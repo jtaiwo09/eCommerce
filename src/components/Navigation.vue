@@ -56,9 +56,10 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 30px;;
 
     .left {
-      font-size: 25px;
+      font-size: 20px;
       color: rgba(27, 28, 28);
     }
     .right {
@@ -123,6 +124,58 @@ export default {
           div:nth-child(3) {
             width: 15px;
           }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+  .header-wrap {
+    .container {
+      .right {
+        .icons {
+          margin-right:23px;
+          img {
+          width: 20px;
+          height: auto;
+        }
+        .cart-counter {
+          width: 20px;
+          height: auto;
+          span {
+            top: 2.5px;
+            left: 6px;
+          }
+        }
+        .bar {
+          width: 22px;
+        }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 400px) {
+  .header-wrap {
+    .container {
+      .right {
+        .icons {
+          margin-right:18px;
+          img {
+          width: 18px;
+          height: auto;
+        }
+        .cart-counter {
+          width: 20px;
+          height: auto;
+          span {
+            top: 2.5px;
+            left: 6px;
+          }
+        }
+        .bar {
+          width: 18px;
+        }
         }
       }
     }

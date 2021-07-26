@@ -61,6 +61,12 @@ methods: {
 .top {
     padding: 25px 0px 50px 50px;
     position: relative;
+    @media(max-width: 800px){
+        padding-left: 25px;
+    }
+    @media(max-width: 500px){
+        padding-left: 10px;
+    }
 
     nav {
         display: block;

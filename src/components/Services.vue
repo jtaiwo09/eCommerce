@@ -33,9 +33,6 @@ data(){
             {
                 text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iste dolore quaerat nostrum, recusandae modi sequi aut est unde odit? ', link:'#', icon:'card', label:'Payment Options'
             },
-            {
-                text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iste dolore quaerat nostrum, recusandae modi sequi aut est unde odit? ', link:'#', icon:'truck', label:'Delivery'
-            },
         ]
     }
 }
@@ -87,6 +84,49 @@ section {
                             color: rgba(27, 28, 28);
                         }
                     }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 873px) {
+    section{
+        padding: 30px 0;
+        .container{
+            padding: 0 25px;
+            .services {
+                .cards {
+                    .card {
+                        width: 200px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 740px) {
+    section{
+        padding: 30px 0;
+        .container{
+            padding: 0 25px;
+            .services {
+                .title {
+                    font-size: 25px;
+                    margin-bottom: 35px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 590px) {
+    ection{
+        padding: 30px 0;
+        .container{
+            padding: 0 15px;
+            .services {
+                .title {
+                    font-size: 23px;
+                    margin-bottom: 25px;
                 }
             }
         }

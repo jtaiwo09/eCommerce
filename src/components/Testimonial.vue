@@ -58,14 +58,15 @@ export default {
   font-size: 12px;
 }
 section {
-  background: rgba(27, 28, 28, 0.62);
+  background: #f5f5f5;
   padding-top: 40px;
   .container {
-      max-width: 500px;
+      max-width: 800px;
       margin: auto;
       .card {
         padding: 25px 15px;
         background: #fff;
+        box-shadow: 8px 16px 10px rgba(0,0,0,0.3);
       }
       h2 {
         text-align: center;

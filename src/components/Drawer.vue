@@ -2,7 +2,7 @@
   <a-drawer
     :title="title"
     :placement="placement"
-    width="500"
+    :width="drawerWidth-80"
     :closable="true"
     :visible="visible"
     @close="onClose"
@@ -14,7 +14,7 @@
 <script>
 export default {
 name: "Drawer",
-props: ['visible', 'title'],
+props: ['visible', 'title', 'drawerWidth'],
 data(){
     return {
         placement: "right",

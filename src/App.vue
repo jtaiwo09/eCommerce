@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navigation @showDrawer="open"/>
-    <Drawer :visible="visible" :title='getTitle' @closeDrawer="close">
+    <Drawer :visible="visible" :drawerWidth='getDrawerWidth' :title='getTitle' @closeDrawer="close">
       <Bars v-if="menu"/>
       <Search v-else-if="search"/>
     </Drawer >
@@ -22,8 +22,17 @@ export default {
       visible: null,
       menu:'',
       search:'',
-      cart:''
+      cart:'',
+      windowWidth: null,
+      mobile: null
     }
+  },
+  created(){
+    this.checkScreen();
+    window.addEventListener('resize', this.checkScreen);
+  },
+  mounted(){
+    console.log(this.windowWidth);
   },
   methods: {
     open(value){
@@ -37,6 +46,9 @@ export default {
     this.menu = false;
     this.search = false;
     this.cart = false;
+  },
+  checkScreen(){
+    this.windowWidth = window.innerWidth;
   }
   },
   computed: {
@@ -44,6 +56,20 @@ export default {
       if(this.menu) return 'MENU';
       else if(this.search) return 'SEARCH'
       else return 'CART';
+    },
+    getDrawerWidth(){
+      if(this.mobile) return this.windowWidth;
+      else return '580';
+    }
+  },
+  watch: {
+    windowWidth(newVal){
+      if(newVal <= 500){
+        this.mobile = true;
+        this.windowWidth = newVal;
+      } else {
+        this.mobile = false;
+      }
     }
   }
 }
@@ -58,6 +84,10 @@ export default {
 
 }
 .container {
-  padding: 0 80px;
+  padding: 0 30px;
+}
+
+@media (max-width: 890px) {
+  
 }
 </style>

@@ -31,7 +31,7 @@ data(){
 .ant-carousel :deep(.slick-slide) {
   height: auto;
   overflow: hidden;
-  margin-top: 75px;
+  margin-top: 70px;
 //   position: relative !important;
 }
 

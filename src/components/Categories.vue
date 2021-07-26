@@ -19,7 +19,7 @@ export default {
 name: 'Categories',
 data(){
     return {
-        items: ['bed', 'single', 'double', 'bed', 'single', 'double', 'bed', 'single',]
+        items: ['bed', 'single', 'double', 'bed', 'single']
     }
 }
 }
@@ -37,7 +37,7 @@ section {
         }
         .categories {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             grid-gap: 20px;
 
 
@@ -88,6 +88,60 @@ section {
 
                     &:hover {
                         opacity: 0.8;
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 740px) {
+    section {
+        padding: 30px 0;
+        .container{
+            padding: 0 25px;
+            .title {
+                font-size: 25px;
+                margin-bottom: 35px;
+            }
+            .categories {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                .cards {
+                    .overlay {
+                        .text {
+                           padding: 6px 14px;
+                           font-size: 16px; 
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 590px) {
+    section {
+        .container{
+            padding: 0 15px;
+            .title {
+                font-size: 23px;
+                margin-bottom: 25px;
+            }
+            .categories {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+    }
+}
+@media (max-width: 500px) {
+    section {
+        .container{
+            .categories {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                .cards {
+                    .overlay {
+                        .text {
+                           padding: 4px 12px;
+                           font-size: 12px; 
+                        }
                     }
                 }
             }
