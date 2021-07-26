@@ -1,30 +1,63 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="app">
+    <Navigation @showDrawer="open"/>
+    <Drawer :visible="visible" :title='getTitle' @closeDrawer="close">
+      <Bars v-if="menu"/>
+      <Search v-else-if="search"/>
+    </Drawer >
   </div>
   <router-view/>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Navigation from './components/Navigation';
+import Drawer from './components/Drawer';
+import Bars from './components/Bars';
+import Search from './components/Search';
+export default {
+  name: 'app',
+  components: { Navigation, Drawer, Bars, Search},
+  data(){
+    return {
+      visible: null,
+      menu:'',
+      search:'',
+      cart:''
+    }
+  },
+  methods: {
+    open(value){
+      this.visible=true
+      if(value == 'menu') this.menu = true;
+      else if(value == 'cart') this.cart = true;
+      else this.search = true;
+    },
+    close(){
+    this.visible = false;
+    this.menu = false;
+    this.search = false;
+    this.cart = false;
+  }
+  },
+  computed: {
+    getTitle(){
+      if(this.menu) return 'MENU';
+      else if(this.search) return 'SEARCH'
+      else return 'CART';
+    }
+  }
 }
-
-#nav {
-  padding: 30px;
+</script>
+<style lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+.app {
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.container {
+  padding: 0 80px;
 }
 </style>
