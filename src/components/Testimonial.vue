@@ -72,6 +72,14 @@ section {
         text-align: center;
         font-size: 32px;
         margin-bottom: 30px;
+        @media (max-width: 740px) {
+          font-size: 25px;
+          margin-bottom: 35px;
+        }
+        @media (max-width: 590px) {
+          font-size: 23px;
+          margin-bottom: 25px;
+        }
       }
   }
 }
