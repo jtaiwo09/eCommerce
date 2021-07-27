@@ -130,7 +130,7 @@ section {
                     .overlay {
                         .text {
                            padding: 6px 14px;
-                           font-size: 16px; 
+                           font-size: 14px; 
                         }
                     }
                 }
@@ -147,8 +147,13 @@ section {
                 margin-bottom: 25px;
             }
             .categories {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
                 grid-gap: 10px;
+                .cards {
+                    .card-footer {
+                        font-size: 12px;
+                    }
+                }
             }
         }
     }
@@ -157,15 +162,12 @@ section {
     section {
         .container{
             .categories {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
                 .cards {
-                    .card-footer{
-                        font-size: 12px;
-                    }
                     .overlay {
                         .text {
                            padding: 4px 12px;
-                           font-size: 12px; 
+                           font-size: 10px; 
                         }
                     }
                 }

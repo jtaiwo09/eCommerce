@@ -54,13 +54,13 @@ data(){
 }
 .ant-carousel :deep(.slick-slide .banner) {
   position: absolute;
-  width: 60vw;
-  max-height: 45%;
+  width: 55vw;
+  max-height: 40%;
   text-align: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   background: rgba(0,0,0,0.5);
   color: #fff;
 
