@@ -1,10 +1,10 @@
 <template>
-  <div class="home-wrap">
-    <Carousel />
-    <Categories />
-    <Services />
-    <Testimonial />
-  </div>
+<div class="container-wrapper">
+  <Carousel />
+  <Categories />
+  <Services />
+  <Testimonial />
+</div>
 </template>
 
 <script>

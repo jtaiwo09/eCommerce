@@ -1,17 +1,24 @@
 <template>
   <a-carousel effect="fade" autoplay arrows>
       <template #prevArrow>
-        <div class="custom-slick-arrow" :style="{left: '50px', zIndex: 1}">
+        <div class="custom-slick-arrow" :style="{left: '30px', zIndex: 1}">
             <left-circle-outlined />
         </div>
         </template>
         <template #nextArrow>
-        <div class="custom-slick-arrow" :style="{right: '50px'}">
+        <div class="custom-slick-arrow" :style="{right: '30px'}">
             <right-circle-outlined />
         </div>
         </template>
-        <div v-for="(item, i) in items" :key="i">
-            <img :src="require(`@/Images/Carousel/${item}.jpg`)" alt="">
+        <div v-for="(item, i) in items" :key="i" class="carousel-text">
+            <img :src="require(`@/Images/Carousel/${item.image}.jpg`)" alt="">
+            <div class="banner">
+              <h1 class="banner-title">Taelio Furnitures</h1>
+              <p class="banner-text">{{item.text}}</p>
+              <div class="banner-btn">
+                Our Furnitures
+              </div>
+            </div>
         </div>
   </a-carousel>
 </template>
@@ -21,7 +28,11 @@ export default {
 name: 'carousel',
 data(){
     return {
-        items: ['carousel-4', 'carousel-5', 'carousel-6']
+        items: [
+          { image: 'carousel-4', text: 'We offer quality products'},
+          { image: 'carousel-5', text: 'We are durable'},
+          { image: 'carousel-6', text: 'We are affordable'},
+        ]
     }
 }
 }
@@ -29,16 +40,58 @@ data(){
 
 <style lang="scss" scoped>
 .ant-carousel :deep(.slick-slide) {
-  height: auto;
+  max-height: 80vh;
+  min-height: 35vh;
   overflow: hidden;
-  margin-top: 70px;
-//   position: relative !important;
+  position: relative;
 }
 
 .ant-carousel :deep(.slick-slide img) {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: cover;
+  min-height: 35vh;
+}
+.ant-carousel :deep(.slick-slide .banner) {
+  position: absolute;
+  width: 60vw;
+  max-height: 50%;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem 1rem;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+
+  .banner-title {
+    font-size: 5vw;
+    color: #fff;
+    margin-bottom: 0;
+  }
+  .banner-btn{
+    display: inline-block;
+    background: rgba(27, 28, 28);
+    border: 3px solid rgba(27, 28, 28);
+    color: #fff;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    cursor:pointer;
+
+  }
+  .banner-text {
+    font-size: 25px;
+    margin-bottom: 0.8rem;
+    @media (max-width: 800px){
+      font-size: 20px;
+    }
+    @media (max-width: 750px){
+      font-size: 17px;
+    }
+    @media (max-width: 450px){
+      font-size: 15px;
+    }
+  }
 }
 .ant-carousel :deep(.slick-arrow.custom-slick-arrow) {
   width: 25px;
@@ -54,26 +107,5 @@ data(){
 .ant-carousel :deep(.custom-slick-arrow:hover) {
   opacity: 0.5;
 }
-
-// .ant-carousel{
-//     .slick-slider{
-//         .slick-list {
-//             .slick-track {
-//                 .slick-slide {
-//                     div {
-//                         .btn-wrap {
-//                             position: absolute;
-//                             width: 80%;
-//                             margin: auto;
-//                             h1 {
-//                                 margin-top: 80px;
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
 
 </style>
