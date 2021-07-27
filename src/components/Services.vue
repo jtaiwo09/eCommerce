@@ -8,7 +8,7 @@
                   <img :src="require(`@/Images/Icons/${item.icon}.svg`)" alt="">
                   <h3>{{item.label}}</h3>
                   <div class="text">
-                      <span>{{item.text}}</span>
+                      <p>{{item.text}}</p>
                       <router-link :to="item.link">Learn More</router-link>
                   </div>
               </div>
@@ -25,13 +25,13 @@ data(){
     return {
         items: [
             {
-                text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iste dolore quaerat nostrum, recusandae modi sequi aut est unde odit? ', link:'#', icon:'question', label:'FAQs'
+                text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iste dolore quaerat nostrum ', link:'#', icon:'question', label:'FAQs'
             },
             {
-                text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iste dolore quaerat nostrum, recusandae modi sequi aut est unde odit? ', link:'#', icon:'truck', label:'Delivery'
+                text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iste dolore quaerat nostrum ', link:'#', icon:'truck', label:'Delivery'
             },
             {
-                text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iste dolore quaerat nostrum, recusandae modi sequi aut est unde odit? ', link:'#', icon:'card', label:'Payment Options'
+                text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iste dolore quaerat nostrum ', link:'#', icon:'card', label:'Payment Options'
             },
         ]
     }
@@ -94,13 +94,6 @@ section {
         padding: 30px 0;
         .container{
             padding: 0 25px;
-            .services {
-                .cards {
-                    .card {
-                        width: 200px;
-                    }
-                }
-            }
         }
     }
 }
