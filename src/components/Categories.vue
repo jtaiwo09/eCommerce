@@ -5,6 +5,9 @@
           <div class="categories">
               <div class="cards" v-for="(item, i) in items" :key="i">
                   <img :src="require(`@/Images/Categories/${item}.jpg`)" alt="">
+                  <div class="card-footer">
+                      {{item}}
+                  </div>
                   <div class="overlay">
                       <div class="text">{{item}}</div>
                   </div>
@@ -19,7 +22,7 @@ export default {
 name: 'Categories',
 data(){
     return {
-        items: ['bed', 'single', 'double', 'bed', 'single']
+        items: ['beds', 'sofa', 'console', 'table']
     }
 }
 }
@@ -37,7 +40,7 @@ section {
         }
         .categories {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             grid-gap: 20px;
 
 
@@ -47,18 +50,33 @@ section {
                 transition: all 0.25s ease;
                 overflow: hidden;
                 position: relative;
+                display: flex;
+                flex-direction: column;
+
+                .card-footer {
+                    text-align: center;
+                    padding: 10px 0;
+                    background-color: rgba(27, 28, 28, 0.8);
+                    color: #fff;
+                    font-size: 18px;
+                    text-transform: uppercase;
+                }
 
                 &:hover {
                     box-shadow:4px 8px 5px rgba(0,0,0,0.3);
                     img {
-                        transform: scale(1.2, 1.2)
+                        transform: scale(1.2, 1.2);
+                    }
+                    .card-footer {
+                        display: none;
                     }
                 }
 
                 img {
                     // position: absolute;
                     width: 100%;
-                    height:auto;
+                    max-height:200px;
+                    object-fit: cover;
                     transform: scale(1, 1);
                     transition: all 0.25s ease;
                 }
@@ -77,13 +95,13 @@ section {
                     align-items: center;
 
                     .text {
-                        background: transparent;
+                        background: rgb(27, 28, 28);
                         color: #fff;
-                        padding: 8px 16px;
-                        border: 3px solid #fff;
-                        font-size: 18px;
-                        font-weight: 400;
+                        padding: 4px 20px;
+                        border: 2px solid #fff;
+                        font-size: 16px;
                         cursor: pointer;
+                        text-transform: uppercase;
                     }
 
                     &:hover {
@@ -106,6 +124,9 @@ section {
             .categories {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 .cards {
+                    .card-footer {
+                        font-size: 14px;
+                    }
                     .overlay {
                         .text {
                            padding: 6px 14px;
@@ -127,6 +148,7 @@ section {
             }
             .categories {
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                grid-gap: 10px;
             }
         }
     }
@@ -137,6 +159,9 @@ section {
             .categories {
                 grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
                 .cards {
+                    .card-footer{
+                        font-size: 12px;
+                    }
                     .overlay {
                         .text {
                            padding: 4px 12px;

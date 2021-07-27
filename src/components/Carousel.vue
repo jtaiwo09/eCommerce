@@ -55,7 +55,7 @@ data(){
 .ant-carousel :deep(.slick-slide .banner) {
   position: absolute;
   width: 60vw;
-  max-height: 50%;
+  max-height: 45%;
   text-align: center;
   top: 50%;
   left: 50%;
