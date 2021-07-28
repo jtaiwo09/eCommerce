@@ -160,7 +160,6 @@ section {
                 margin-bottom: 25px;
             }
             .categories {
-                // grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
                 grid-gap: 10px;
                 .cards {
                     .card-footer {
