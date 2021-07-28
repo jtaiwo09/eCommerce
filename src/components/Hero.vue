@@ -29,13 +29,13 @@ export default {
     align-items: center;
     // position: absolute;
     // width: 100%;
-    min-height: 60vh;
+    min-height: 70vh;
     // background-color: #e0dfe5;
     // z-index: 1;
     overflow: hidden;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 50% 75%;
+    background-position: 50% 60%;
     // background-image: url('../Images/Carousel/carousel-5.jpg')
 
     // img {

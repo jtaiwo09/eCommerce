@@ -4,13 +4,13 @@
           <h2 class="title">Shop Our Top Categories</h2>
           <div class="categories">
               <div class="cards" v-for="(item, i) in items" :key="i">
-                  <img :src="require(`@/Images/Categories/${item}.jpg`)" alt="">
+                  <img :src="require(`@/Images/Categories/${item.image}.jpg`)" alt="">
                   <div class="card-footer">
-                      {{item}}
+                      {{item.category}}
                   </div>
                   <div class="overlay">
-                      <router-link :to="{name:'Products', params: {id:item}}">
-                          <div class="text">{{item}}</div>
+                      <router-link :to="{name:'Products', params: {id:item.image}}">
+                          <div class="text">{{item.label}}</div>
                       </router-link>
                   </div>
               </div>
@@ -24,7 +24,20 @@ export default {
 name: 'Categories',
 data(){
     return {
-        items: ['beds', 'sofa', 'console', 'table']
+        items: [
+            {
+                image: 'table', category: 'Tables Furnitures', label: 'Table'
+            },
+            {
+                image: 'beds', category: 'Bedroom Furnitures', label:'Bedroom'
+            },
+            {
+                image: 'kitchen', category: 'Kitchen Furnitures', label: 'Kitchen'
+            },
+            {
+                image: 'living-room', category: 'Living Room', label:'Living Room'
+            }
+        ]
     }
 }
 }
@@ -52,15 +65,13 @@ section {
                 transition: all 0.25s ease;
                 overflow: hidden;
                 position: relative;
-                display: flex;
-                flex-direction: column;
 
                 .card-footer {
                     text-align: center;
                     padding: 10px 0;
                     background-color: rgba(27, 28, 28, 0.8);
                     color: #fff;
-                    font-size: 18px;
+                    font-size: 16px;
                     text-transform: uppercase;
                 }
 
@@ -77,7 +88,7 @@ section {
                 img {
                     // position: absolute;
                     width: 100%;
-                    max-height:200px;
+                    max-height:auto;
                     object-fit: cover;
                     transform: scale(1, 1);
                     transition: all 0.25s ease;
@@ -124,7 +135,7 @@ section {
                 margin-bottom: 35px;
             }
             .categories {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 .cards {
                     .card-footer {
                         font-size: 14px;
@@ -143,13 +154,13 @@ section {
 @media (max-width: 590px) {
     section {
         .container{
-            padding: 0 15px;
+            padding: 0 20px;
             .title {
                 font-size: 23px;
                 margin-bottom: 25px;
             }
             .categories {
-                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                // grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
                 grid-gap: 10px;
                 .cards {
                     .card-footer {
@@ -164,7 +175,7 @@ section {
     section {
         .container{
             .categories {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                // grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 .cards {
                     .overlay {
                         .text {
