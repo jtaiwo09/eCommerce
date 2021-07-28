@@ -51,6 +51,9 @@ data(){
 .ant-carousel :deep(.slick-list) {
   height: 60vh;
 }
+.ant-carousel :deep(.slick-track) {
+  height: 60vh;
+}
 .ant-carousel :deep(.slick-slide img) {
   width: 100%;
   height: 100%;
@@ -71,4 +74,12 @@ data(){
   opacity: 0.5;
 }
 
+@media (max-width: 500px) {
+  .ant-carousel :deep(.slick-list) {
+  height: 50vh;
+}
+.ant-carousel :deep(.slick-track) {
+  height: 50vh;
+}
+}
 </style>
