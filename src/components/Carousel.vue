@@ -37,11 +37,6 @@ data(){
   position: relative;
 }
 .ant-carousel :deep(.slick-slide .carousel) {
-  // background-image: url('../Images/Carousel/carousel-1.jpg');
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  // width: auto;
-  // height: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
