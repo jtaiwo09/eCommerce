@@ -10,13 +10,13 @@
         </template>
         <div v-for="(item, i) in items" :key="i" class="carousel-text">
             <img :src="require(`@/Images/Carousel/${item.image}.jpg`)" alt="">
-            <div class="banner">
+            <!-- <div class="banner">
               <h1 class="banner-title">Taelio Furnitures</h1>
               <p class="banner-text">{{item.text}}</p>
-              <!-- <div class="banner-btn">
+              <div class="banner-btn">
                 Our Furnitures
-              </div> -->
-            </div>
+              </div>
+            </div> -->
         </div>
   </a-carousel>
 </template>

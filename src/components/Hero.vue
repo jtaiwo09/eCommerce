@@ -1,6 +1,6 @@
 <template>
-  <header :class="hero" :style="style">
-    <img :src="require(`../Images/Categories/${image}.jpg`)" alt="">
+  <header :class="hero" :style="styles">
+    <!-- <img :src="require(`../Images/Categories/${image}.jpg`)" alt=""> -->
       <slot></slot>
   </header>
 </template>
@@ -12,9 +12,9 @@ export default {
     computed: {
       styles() {
             return {
-                'background-image': `url(${require(`../Images/ProductHero/${this.image}.jpg`)})`,
-                'background-repeat': 'no-repeat',
-                'background-size': 'contain',
+                'background-image': `url(${require(`../Images/Categories/${this.image}.jpg`)})`,
+                // 'background-repeat': 'no-repeat',
+                // 'background-size': 'center/cover',
             }
         }
     },
@@ -27,18 +27,22 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    width: 100%;
+    // position: absolute;
+    // width: 100%;
     min-height: 60vh;
-    background-color: #e0dfe5;
-    z-index: 1;
+    // background-color: #e0dfe5;
+    // z-index: 1;
     overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 75%;
+    // background-image: url('../Images/Carousel/carousel-5.jpg')
 
-    img {
-      position: absolute;
-      width: 500px;
-      z-index: 2;
-    }
+    // img {
+    //   position: absolute;
+    //   width: 100%;
+    //   z-index: 2;
+    // }
 }
 
 @media (max-width: 590px) {

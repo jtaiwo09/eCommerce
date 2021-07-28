@@ -3,6 +3,7 @@
     <Hero hero='categoryHero' :image='id'>
         <Banner :title="`${id} Section`"/>
     </Hero>
+    <ProductList />
   </div>
 </template>
 
