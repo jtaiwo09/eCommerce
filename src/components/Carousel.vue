@@ -2,12 +2,10 @@
   <a-carousel effect="fade" autoplay arrows>
       <template #prevArrow>
         <div class="custom-slick-arrow" :style="{left: '30px', zIndex: 1}">
-            <left-circle-outlined />
         </div>
         </template>
         <template #nextArrow>
         <div class="custom-slick-arrow" :style="{right: '30px'}">
-            <right-circle-outlined />
         </div>
         </template>
         <div v-for="(item, i) in items" :key="i" class="carousel-text">
@@ -86,10 +84,10 @@ data(){
       font-size: 20px;
     }
     @media (max-width: 750px){
-      font-size: 17px;
+      font-size: 16px;
     }
     @media (max-width: 450px){
-      font-size: 15px;
+      font-size: 12px;
     }
   }
 }

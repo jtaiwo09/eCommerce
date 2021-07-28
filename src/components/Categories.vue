@@ -9,7 +9,9 @@
                       {{item}}
                   </div>
                   <div class="overlay">
-                      <div class="text">{{item}}</div>
+                      <router-link :to="{name:'Products', params: {id:item}}">
+                          <div class="text">{{item}}</div>
+                      </router-link>
                   </div>
               </div>
           </div>
@@ -65,7 +67,7 @@ section {
                 &:hover {
                     box-shadow:4px 8px 5px rgba(0,0,0,0.3);
                     img {
-                        transform: scale(1.2, 1.2);
+                        transform: scale(1.5, 1.5);
                     }
                     .card-footer {
                         display: none;

@@ -105,6 +105,22 @@ export default {
     background-image: url('./Images/Carousel/carousel-1.jpg');
     min-height: 60vh;
 }
+.btn-primary {
+  display: inline-block;
+  text-decoration: none;
+  letter-spacing: 3px;
+  color: #fff;
+  background: #af9a7d;
+  padding: 0.4rem 0.9rem;
+  border: 3px solid #af9a7d;
+  transition: all .25s ease;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: transparent;
+  color: #fff;
+}
 
 @media (max-width: 890px) {
   
