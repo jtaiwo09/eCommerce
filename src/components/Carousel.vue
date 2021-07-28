@@ -34,21 +34,28 @@ data(){
   max-height: 80vh;
   min-height: 35vh;
   overflow: hidden;
+  position: relative;
 }
 .ant-carousel :deep(.slick-slide .carousel) {
-  background-image: url('../Images/Carousel/carousel-1.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: auto;
+  // background-image: url('../Images/Carousel/carousel-1.jpg');
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // width: auto;
+  // height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 100%;
 }
-
-// .ant-carousel :deep(.slick-slide img) {
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-//   min-height: 35vh;
-// }
+.ant-carousel :deep(.slick-list) {
+  height: 60vh;
+}
+.ant-carousel :deep(.slick-slide img) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .ant-carousel :deep(.slick-arrow.custom-slick-arrow) {
   width: 25px;
   height: 25px;

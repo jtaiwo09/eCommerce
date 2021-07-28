@@ -81,7 +81,7 @@ section {
                         transform: scale(1.5, 1.5);
                     }
                     .card-footer {
-                        display: none;
+                        visibility: hidden;
                     }
                 }
 
@@ -143,7 +143,7 @@ section {
                     .overlay {
                         .text {
                            padding: 6px 14px;
-                           font-size: 14px; 
+                           font-size: 16px; 
                         }
                     }
                 }
@@ -179,7 +179,7 @@ section {
                     .overlay {
                         .text {
                            padding: 4px 12px;
-                           font-size: 10px; 
+                           font-size: 14px; 
                         }
                     }
                 }
