@@ -93,18 +93,6 @@ export default {
 .container {
   padding: 0 30px;
 }
-.defaultHero,
-.categoryHero {
-    min-height: calc(100vh - 66px);
-    background: url('./Images/Carousel/carousel-2.jpg') center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.categoryHero {
-    background-image: url('./Images/Carousel/carousel-1.jpg');
-    min-height: 60vh;
-}
 .btn-primary {
   display: inline-block;
   text-decoration: none;

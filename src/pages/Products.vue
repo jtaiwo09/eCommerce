@@ -1,6 +1,6 @@
 <template>
   <div class="container-wrapper">
-    <Hero hero='categoryHero'>
+    <Hero hero='categoryHero' :image='id'>
         <Banner :title="`${id} Section`"/>
     </Hero>
   </div>
