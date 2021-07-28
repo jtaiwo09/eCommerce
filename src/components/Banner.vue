@@ -2,7 +2,7 @@
   <div class="banner">
       <h1>{{title}}</h1>
       <div />
-      <router-link :to="{name: 'Home'}" class="btn-primary">Back Home</router-link>
+      <slot></slot>
   </div>
 </template>
 
