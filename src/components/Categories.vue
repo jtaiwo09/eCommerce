@@ -101,24 +101,25 @@ section {
                     bottom: 0;
                     background: rgba(0,0,0);
                     opacity: 0;
-                    z-index: 1;
                     transition: all 0.25s ease;
                     display: flex;
                     justify-content: center;
                     align-items: center;
 
-                    .text {
-                        background: rgb(27, 28, 28);
-                        color: #fff;
-                        padding: 4px 20px;
-                        border: 2px solid #fff;
-                        font-size: 16px;
-                        cursor: pointer;
-                        text-transform: uppercase;
+                    a {
+                        .text {
+                            background: rgb(27, 28, 28);
+                            color: #fff;
+                            padding: 4px 20px;
+                            border: 2px solid #fff;
+                            font-size: 16px;
+                            cursor: pointer;
+                            text-transform: uppercase;
+                        }
                     }
 
                     &:hover {
-                        opacity: 0.8;
+                        opacity: 0.5;
                     }
                 }
             }

@@ -14,6 +14,7 @@ import Navigation from './components/Navigation';
 import Drawer from './components/Drawer';
 import Bars from './components/Bars';
 import Search from './components/Search';
+
 export default {
   name: 'app',
   components: { Navigation, Drawer, Bars, Search},
@@ -30,6 +31,7 @@ export default {
   created(){
     this.checkScreen();
     window.addEventListener('resize', this.checkScreen);
+    this.$store.dispatch('GET_PRODUCTS');
   },
   mounted(){
     console.log(this.windowWidth);
