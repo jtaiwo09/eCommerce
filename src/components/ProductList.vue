@@ -65,7 +65,6 @@ export default {
   },
   mounted(){
     this.onload();
-    console.log(this.getCategory)
   }
 }
 </script>
