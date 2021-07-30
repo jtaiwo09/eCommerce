@@ -22,7 +22,7 @@
           <div class="description">{{product.description}}</div>
           <div class="action">
             <span>₦{{product.price}}</span>
-            <div class="btn">
+            <div class="btn" @click="addToCart(product)">
               Add to cart
             </div>
           </div>
@@ -61,6 +61,14 @@ export default {
     },
     onload(){
       this.currentProduct = this.products.filter(product=> product.category == "women's clothing");
+    },
+    addToCart(value){
+      this.$store.commit('ADD_TO_CART', value);
+      this.$notification.success({
+        message: value.title,
+        description: 'Item added to cart',
+        // icon: <a-icon type="smile" style="color: #108ee9" />,
+      });
     }
   },
   mounted(){
@@ -78,8 +86,9 @@ export default {
     position: absolute;
     left: 0;
     top: 0;
-    background: #e0dfe5;
-    height: 100vh;
+    background: #fff;
+    // height: 100%;
+    display: inline-block;
     width: 300px;
     box-shadow: 4px 8px 8px rgba(0,0,0,0.3);
     
@@ -101,6 +110,9 @@ export default {
         cursor: pointer;
       }
     }
+    @media (max-width: 750px) {
+      max-width: 250px;
+    }
   }
   .container {
     width: 100%;
@@ -114,6 +126,12 @@ export default {
       i {
         font-size: 20px;
         color: #fff;
+        @media (max-width: 500px) {
+        font-size: 16px;
+      }
+      }
+      @media (max-width: 500px) {
+        padding: 5px;
       }
     }
   .card-container {

@@ -4,6 +4,7 @@
     <Drawer :visible="visible" :drawerWidth='getDrawerWidth' :title='getTitle' @closeDrawer="close">
       <Bars v-if="menu"/>
       <Search v-else-if="search"/>
+      <CartItems v-else-if="cart"/>
     </Drawer >
     <router-view/>
   </div>
@@ -14,10 +15,11 @@ import Navigation from './components/Navigation';
 import Drawer from './components/Drawer';
 import Bars from './components/Bars';
 import Search from './components/Search';
+import CartItems from './components/CartItems';
 
 export default {
   name: 'app',
-  components: { Navigation, Drawer, Bars, Search},
+  components: { Navigation, Drawer, Bars, Search, CartItems},
   data(){
     return {
       visible: null,

@@ -4,12 +4,16 @@ import axios from 'axios';
 export default createStore({
   state: {
     products: null,
-    dataFetched: false 
+    dataFetched: false,
+    cart: []
   },
   mutations: {
     SET_PRODUCTS: (state, payload) => {
       state.products = payload,
       state.dataFetched = true
+    },
+    ADD_TO_CART: async(state, payload) => {
+      state.cart.push(payload);
     }
   },
   actions: {
@@ -19,7 +23,7 @@ export default createStore({
         const payload = res.data;
         commit('SET_PRODUCTS', payload);
       })
-    }
+    },
   },
   modules: {
   }
