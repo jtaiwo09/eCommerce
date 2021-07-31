@@ -67,7 +67,6 @@ export default {
       this.$notification.success({
         message: value.title,
         description: 'Item added to cart',
-        // icon: <a-icon type="smile" style="color: #108ee9" />,
       });
     }
   },

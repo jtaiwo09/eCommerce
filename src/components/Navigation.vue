@@ -19,7 +19,7 @@
               :src="require('@/Images/Icons/cart.svg')"
               alt=""
             />
-            <span>{{total}}</span>
+            <span>{{$store.getters.totalCartItem}}</span>
           </div>
         </div>
         <div class="bars icons" @click="showDrawer('menu')">
@@ -42,9 +42,9 @@ export default {
     },
   },
   computed: {
-    total(){
-      return this.$store.state.cart.length;
-    }
+    // total(){
+    //   return this.$store.state.cart.length;
+    // }
   }
 };
 </script>
