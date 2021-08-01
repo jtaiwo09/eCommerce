@@ -25,68 +25,19 @@
                 <img :src="require('../Images/New/ads/ads-1.jpg')" alt="">
             </div>
         </div>
-        <div class="cols">
-            <div class="col-w">
-                <section class="card">
-                    <header class="rows">
-                        <div class="header-wrap">
-                            <h2>Top Selling items</h2>
-                        </div>
-                    </header>
-                    <div class="card-wrap">
-                        <div class="card-holder">
-                            <div class="itm-col" v-for="(item, i) in productImages" :key="i">
-                                <article class="prd">
-                                    <router-link class="core" to="#">
-                                        <img :src="require(`../Images/Categories/${item}.jpg`)" alt="">
-                                        <div class="name">
-                                            Text
-                                        </div>
-                                        <div class="prc">
-                                            Price
-                                        </div>
-                                        <div class="tag">
-                                            -47%
-                                        </div>
-                                    </router-link>
-                                </article>
-                            </div>
-                        </div>
-                        <div class="c-btn prev">
-                            <i class="fas fa-angle-left"></i>
-                        </div>
-                        <div class="c-btn next">
-                            <i class="fas fa-angle-right"></i>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="cols">
-            <sections class="cards">
-                <div class="card-wrapper">
-                    <router-link class="card-link" to="#">
-                        <div class="image-wrap">
-                            <img :src="require('../Images/New/carousel/ads-1.jpg')" alt="">
-                        </div>
-                    </router-link>
-                    <router-link class="card-link" to="#">
-                        <div class="image-wrap">
-                            <img :src="require('../Images/New/carousel/ads-2.jpg')" alt="">
-                        </div>
-                    </router-link>
-                </div>
-            </sections>
-        </div>
+        <Products :productImages="productImages" title="Top Selling items"/>
+        <TopCategories :cards="{img1:'ads-1.jpg', img2: 'ads-2.jpg', title:'Top selling items'}"/>
+        <TopCategories :cards="{img1:'ads-3.jpg', img2: 'ads-4.jpeg'}"/>
+        <Products :productImages="productImages" title="New Arrivals"/>
     </div>
-    
 </main>
 </template>
 
 <script>
-// import ProductSlider from '../component/ProductSlider.vue';
+import TopCategories from '../component/TopCategories.vue';
+import Products from '../component/Products.vue';
 export default {
-    // components: {ProductSlider},
+    components: { TopCategories, Products },
     data(){
         return {
             options: {
@@ -98,7 +49,20 @@ export default {
                 fade: true,
             },
             items: ['carousel-1', 'carousel-3', 'carousel-5'],
-            productImages: ['beds', 'console', 'single', 'double', 'wardrobe', 'beds', 'console', 'single', 'double', 'wardrobe', 'beds', 'console', 'single']
+            productImages: [
+                { image: 'table', discount: '-25', price: '#25,000', name: 'Table'},
+                { image: 'double', discount: '-12', price: '#36,000', name: 'Chair'},
+                { image: 'console', discount: '-15', price: '#30,000', name: 'Console'},
+                { image: 'wardrobe', discount: '-8', price: '#75,000', name: 'Wardrobe'},
+                { image: 'table', discount: '-25', price: '#25,000', name: 'Table'},
+                { image: 'double', discount: '-12', price: '#36,000', name: 'Chair'},
+                { image: 'console', discount: '-15', price: '#30,000', name: 'Console'},
+                { image: 'wardrobe', discount: '-8', price: '#75,000', name: 'Wardrobe'},
+                { image: 'table', discount: '-25', price: '#25,000', name: 'Table'},
+                { image: 'double', discount: '-12', price: '#36,000', name: 'Chair'},
+                { image: 'console', discount: '-15', price: '#30,000', name: 'Console'},
+                { image: 'wardrobe', discount: '-8', price: '#75,000', name: 'Wardrobe'},
+            ]
         }
     }
 }
@@ -187,14 +151,6 @@ export default {
                 flex-wrap: nowrap;
                 height: 0;
                 min-height: 48px;
-                justify-content: space-between;
-                align-items: center;
-                max-width: 950px;
-                margin-left: auto;
-                margin-right: auto;
-                width: 100%;
-                flex: 0 1 auto;
-                display: flex;
 
                 .header-wrap {
                     align-items: center;
@@ -368,6 +324,7 @@ export default {
         .card-wrapper {
             padding: 8px 4px;
             display:flex;
+            background: #fff;
 
             .card-link {
                 margin-left: 4px;
@@ -388,6 +345,13 @@ export default {
                         top: 0;
                         left: 0;
                         position: absolute;
+                        transition: .15s ease;
+                    }
+
+                    &:hover {
+                        img {
+                            transform: scale(1.015, 1.015);
+                        }
                     }
                 }
             }
