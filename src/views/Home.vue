@@ -52,9 +52,31 @@
                                 </article>
                             </div>
                         </div>
+                        <div class="c-btn prev">
+                            <i class="fas fa-angle-left"></i>
+                        </div>
+                        <div class="c-btn next">
+                            <i class="fas fa-angle-right"></i>
+                        </div>
                     </div>
                 </section>
             </div>
+        </div>
+        <div class="cols">
+            <sections class="cards">
+                <div class="card-wrapper">
+                    <router-link class="card-link" to="#">
+                        <div class="image-wrap">
+                            <img :src="require('../Images/New/carousel/ads-1.jpg')" alt="">
+                        </div>
+                    </router-link>
+                    <router-link class="card-link" to="#">
+                        <div class="image-wrap">
+                            <img :src="require('../Images/New/carousel/ads-2.jpg')" alt="">
+                        </div>
+                    </router-link>
+                </div>
+            </sections>
         </div>
     </div>
     
@@ -87,6 +109,7 @@ export default {
     flex-grow: 1;
     padding-bottom: 56px;
     position: relative;
+    background: #f5f5f5;
 
     .flyout-side {
         font-size: 0;
@@ -148,7 +171,6 @@ export default {
     width: 100%;
     padding-left: 8px;
     padding-right: 8px;
-    height: 358.5px;
     .col-w {
         .card {
             overflow: hidden;
@@ -213,6 +235,10 @@ export default {
                     margin-right: auto;
                     width: 100%;
                     flex: 0 1 auto;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
 
                     .itm-col {
                         flex-shrink: 0;
@@ -285,6 +311,83 @@ export default {
                                 }
                             }
                         }
+                    }
+                }
+                .c-btn {
+                    cursor: pointer;
+                    padding: 8px;
+                    background-color: rgba(40, 40, 40, 0.5);
+                    border-radius: 99px;
+                    z-index: 30;
+                    font-size: 0;
+                    transform: translate3d(0, -50%, 0);
+                    top: 50%;
+                    position: absolute;
+                    -webkit-appearance: button;
+                    text-transform: none;
+                    margin: 0;
+                    overflow: visible;
+                    border: 0;
+
+                    i {
+                        color: #fff;
+                        width: 24px;
+                        height: 24px;
+                    }
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+                .prev{
+                    left: 8px;
+                }
+                .next {
+                    right: 8px
+                }
+            }
+        }
+    }
+}
+.cols {
+    padding-bottom: 8px;
+    padding-top: 8px;
+    flex-basis: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    .cards {
+        overflow: hidden;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.05);
+        background: #fff;
+        border-radius: 4px;
+
+        .card-wrapper {
+            padding: 8px 4px;
+            display:flex;
+
+            .card-link {
+                margin-left: 4px;
+                margin-right: 4px;
+                width: 100%;
+                text-decoration: none;
+
+                .image-wrap {
+                    padding-top: 43.75%;
+                    height: 0;
+                    width: 100%;
+                    position: relative;
+
+                    img {
+                        border-radius: 4px;
+                        height: 100%;
+                        width: 100%;
+                        top: 0;
+                        left: 0;
+                        position: absolute;
                     }
                 }
             }

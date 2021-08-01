@@ -141,7 +141,7 @@ methods: {
                 padding-right: 8px;
 
                 .account {
-                    margin-right: auto;
+                    // margin-right: auto;
                     padding-right: 8px;
                     align-items: center;
                     display: flex;

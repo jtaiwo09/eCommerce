@@ -96,9 +96,7 @@ export default {
 header, section, nav {
   display: block;
 }
-html, body {
-  overflow: hidden;
-}
+
 body {
   font-family: Roboto,-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
   color: #282828;
@@ -137,7 +135,6 @@ body {
     display: flex;
     flex-basis: 100%;
     max-width: 100%;
-    min-width: 100%;
     width: 100%;
     margin-left: 8px;
     margin-right: 8px;
