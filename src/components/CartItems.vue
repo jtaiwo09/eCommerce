@@ -21,7 +21,9 @@
           </div>
       </div>
       </div>
-      <h1>hello</h1>
+      <div class="cart-summary">
+          <span>Subtotal: {{cartTotal}}</span>
+      </div>
   </div>
 </template>
 
@@ -39,6 +41,9 @@ computed: {
       }
       return map;
     },
+    cartTotal(){
+        return this.$store.state.cart.reduce((total, item)=> total += item.price)
+    }
 },
 methods: {
     increase(value){

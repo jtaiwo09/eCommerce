@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../pages/Home';
+// import Home from '../pages/Home';
+import Home from '../views/Home';
 import Products from '../pages/Products';
 import SingleProduct from '../pages/SingleProduct';
 
