@@ -1,6 +1,6 @@
 <template>
   <div class="cols">
-            <sections class="cards">
+            <section class="cards">
                 <header class="rows">
                         <div class="header-wrap">
                             <h2>{{cards.title}}</h2>
@@ -18,7 +18,7 @@
                         </div>
                     </router-link>
                 </div>
-            </sections>
+            </section>
         </div>
 </template>
 

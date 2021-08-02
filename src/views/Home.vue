@@ -26,9 +26,20 @@
             </div>
         </div>
         <Products :productImages="productImages" title="Top Selling items"/>
-        <TopCategories :cards="{img1:'ads-1.jpg', img2: 'ads-2.jpg', title:'Top selling items'}"/>
+        <TopCategories :cards="{img1:'ads-1.jpg', img2: 'ads-2.jpg', title:'Top Categories'}"/>
         <TopCategories :cards="{img1:'ads-3.jpg', img2: 'ads-4.jpeg'}"/>
         <Products :productImages="productImages" title="New Arrivals"/>
+        <div class="cols">
+            <div class="cards">
+                <div class="card-wrapper">
+                    <router-link class="card-link" to="#">
+                        <div class="image-wrap">
+                            <img :src="require('../Images/New/ads/btm-ads.jpg')" alt="">
+                        </div>
+                    </router-link>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 </template>
@@ -135,14 +146,12 @@ export default {
     width: 100%;
     padding-left: 8px;
     padding-right: 8px;
-    .col-w {
         .card {
             overflow: hidden;
             border-radius: 4px;
             width: 100%;
             box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.05);
             background-color: #fff;
-            display: block;
 
             .rows {
                 background: #fff;
@@ -215,6 +224,10 @@ export default {
                             background: #fff;
                             display: block;
 
+                            &:hover {
+                                box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+                            }
+
                             .core {
                                 width: 100px;
                                 // visibility: hidden !important;
@@ -223,8 +236,7 @@ export default {
                                 img {
                                     display: block;
                                     width: 100%;
-                                    height: auto;
-                                    border-style: none;
+                                    height: 200px;
                                 }
                                 .name {
                                     font-size: 0.875rem;
@@ -236,6 +248,8 @@ export default {
                                     padding-top: 8px;
                                     padding-left: 8px;
                                     overflow: hidden;
+                                    color: #282828;
+                                    margin-top: auto;
                                 }
                                 .prc {
                                     font-size: 1rem;
@@ -245,6 +259,7 @@ export default {
                                     padding-right: 8px;
                                     padding-top: 4px;
                                     direction: ltr;
+                                    color: #282828;
                                 }
                                 .tag {
                                     top: 8px;
@@ -271,24 +286,23 @@ export default {
                 }
                 .c-btn {
                     cursor: pointer;
-                    padding: 8px;
+                    width: 40px;
+                    height: 40px;
                     background-color: rgba(40, 40, 40, 0.5);
-                    border-radius: 99px;
+                    border-radius: 50%;
                     z-index: 30;
-                    font-size: 0;
                     transform: translate3d(0, -50%, 0);
                     top: 50%;
                     position: absolute;
-                    -webkit-appearance: button;
-                    text-transform: none;
                     margin: 0;
                     overflow: visible;
-                    border: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
 
                     i {
                         color: #fff;
-                        width: 24px;
-                        height: 24px;
+                        font-size: 24px;
                     }
 
                     &:focus {
@@ -303,11 +317,8 @@ export default {
                 }
             }
         }
-    }
 }
 .cols {
-    padding-bottom: 8px;
-    padding-top: 8px;
     flex-basis: 100%;
     max-width: 100%;
     min-width: 100%;
@@ -321,6 +332,26 @@ export default {
         background: #fff;
         border-radius: 4px;
 
+        .header-wrap {
+            align-items: center;
+            display: flex;
+            overflow: hidden;
+            padding-left: 0;
+            padding-right: 0;
+            max-width: 100%;
+            flex-grow: 1;
+
+            h2 {
+                font-size: 1.25rem;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                font-weight: 500;
+                margin-left: 10px;
+                padding: 0;
+            }
+        }
+
         .card-wrapper {
             padding: 8px 4px;
             display:flex;
@@ -333,14 +364,13 @@ export default {
                 text-decoration: none;
 
                 .image-wrap {
-                    padding-top: 43.75%;
-                    height: 0;
+                    height: 200px;
                     width: 100%;
                     position: relative;
 
                     img {
                         border-radius: 4px;
-                        height: 100%;
+                        height: auto;
                         width: 100%;
                         top: 0;
                         left: 0;
@@ -350,7 +380,7 @@ export default {
 
                     &:hover {
                         img {
-                            transform: scale(1.015, 1.015);
+                            transform: scale(1.005, 1.005);
                         }
                     }
                 }

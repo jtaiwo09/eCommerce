@@ -107,9 +107,11 @@ data(){
 },
 methods: {
     showMenu(){
+        this.isHelpOpen = false;
         this.isOpen = !this.isOpen;
     },
     showHelpMenu(){
+        this.isOpen = false;
         this.isHelpOpen = !this.isHelpOpen;
     },
     openMenuCategory(){
@@ -168,8 +170,7 @@ methods: {
                             cursor: pointer;
 
                             i {
-                                width: 24px;
-                                height: 24px;
+                                font: 24px;
                                 color: #282828;
                             }
                         }
@@ -213,7 +214,7 @@ methods: {
                         margin-left: 8px;
                         margin-right: 8px;
                         flex-shrink: 0;
-                        fill: #75757a;
+                        color: #75757a;
                     }
                     input {
                         font-size: 1rem;
@@ -294,8 +295,7 @@ methods: {
 
                             i {
                                 color: #282828;
-                                width: 24px;
-                                height: 24px;
+                                font-size: 24px;
                             }
 
                         }
@@ -303,8 +303,7 @@ methods: {
                             margin-left: 8px;
                             flex-shrink: 0;
                             color: #282828;
-                            width: 18px;
-                            height: 18px;
+                            font-size: 18px;
                         }
                         &:hover {
                             color: rgb(135, 206, 235);
@@ -365,10 +364,8 @@ methods: {
                                 i {
                                     margin-right: 16px;
                                     flex-shrink: 0;
-                                    fill: #282828;
-                                    width: 24px;
-                                    height: 24px;
-                                    font-weight: 0;
+                                    color: #282828;
+                                    font-size: 24px;
                                 }
                             }
                         }
