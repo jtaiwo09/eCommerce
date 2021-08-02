@@ -10,7 +10,7 @@
                               <i class="fas fa-bars"></i>
                           </span>
                       </label> -->
-                      <div class="box" v-if="isMenuCategory">
+                      <!-- <div class="box" v-if="isMenuCategory">
                           <div class="inbox">
                               <div class="flyout">
                                   <router-link class="itm" to="#">
@@ -19,7 +19,7 @@
                                   </router-link>
                               </div>
                           </div>
-                      </div>
+                      </div> -->
                   </div>
                   <router-link to="#">
                       <h3>Logo</h3>

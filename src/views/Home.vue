@@ -5,22 +5,16 @@
             <div class="flyout-menu">
                 <div class="flyout">
                     <router-link to="#" class="itm">
-                        <img src="#" alt="">
-                        <span class="text">Tables</span>
+                        <i class="fas fa-couch"></i>
+                        <span class="text">Couch</span>
                     </router-link>
                     <router-link to="#" class="itm">
-                        <img src="#" alt="">
-                        <span class="text">Dinning Chairs</span>
+                        <i class="fas fa-bed"></i>
+                        <span class="text">Beds</span>
                     </router-link>
                 </div>
             </div>
-            <div class="slider">
-                <agile class="agile" :options="options">
-                    <div v-for="(item, i) in items" :key="i">
-                        <img :src="require(`../Images/New/carousel/${item}.jpg`)" alt="">
-                    </div>
-                </agile>
-            </div>
+            <Carousel :items='items'/>
             <div class="ads">
                 <img :src="require('../Images/New/ads/ads-1.jpg')" alt="">
             </div>
@@ -47,18 +41,11 @@
 <script>
 import TopCategories from '../component/TopCategories.vue';
 import Products from '../component/Products.vue';
+import Carousel from '../component/Carousel.vue';
 export default {
-    components: { TopCategories, Products },
+    components: { TopCategories, Products, Carousel },
     data(){
         return {
-            options: {
-                infinite: true,
-                navButtons: false,
-                dots: true,
-                autoplay: true,
-                autoplaySpeed: 3000,
-                fade: true,
-            },
             items: ['carousel-1', 'carousel-3', 'carousel-5'],
             productImages: [
                 { image: 'table', discount: '-25', price: '#25,000', name: 'Table'},
@@ -86,11 +73,26 @@ export default {
     position: relative;
     background: #f5f5f5;
 
-    .flyout-side {
+    .flyout-menu {
         font-size: 0;
         flex-shrink: 0;
         width: 206px;
         position: relative;
+        background-color: #fff;
+
+        .flyout {
+            .itm {
+                
+                i {
+                    font-size: 18px;
+                    margin-right: 12px;
+                }
+                .text {
+                    font-size: 14px;
+                    // margin
+                }
+            }
+        }
     }
     .slider {
         margin-right: 16px;
@@ -367,11 +369,13 @@ export default {
                     height: 200px;
                     width: 100%;
                     position: relative;
+                    overflow: hidden;
 
                     img {
                         border-radius: 4px;
-                        height: auto;
+                        height: 100%;
                         width: 100%;
+                        object-fit: cover;
                         top: 0;
                         left: 0;
                         position: absolute;
