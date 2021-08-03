@@ -70,10 +70,11 @@ export default {
   watch: {
     windowWidth(newVal){
       if(newVal <= 500){
-        this.mobile = true;
+        this.$store.commit('ON_MOBILE')
         this.windowWidth = newVal;
       } else {
-        this.mobile = false;
+        this.$store.commit('OFF_MOBILE')
+
       }
     }
   }
