@@ -19,10 +19,10 @@
                 <img :src="require('../Images/New/ads/ads-1.jpg')" alt="">
             </div>
         </div>
-        <Products :productImages="productImages" title="Top Selling items"/>
-        <TopCategories :cards="{img1:'ads-1.jpg', img2: 'ads-2.jpg', title:'Top Categories'}"/>
+        <TopCategories :cards="{img1:'ads-1.jpg', img2: 'ads-2.jpg'}"/>
         <TopCategories :cards="{img1:'ads-3.jpg', img2: 'ads-4.jpeg'}"/>
         <Products :productImages="productImages" title="New Arrivals"/>
+        <Products :productImages="productImages" title="Top Selling items"/>
         <div class="cols">
             <div class="cards">
                 <div class="card-wrapper">
@@ -48,18 +48,18 @@ export default {
         return {
             items: ['carousel-1', 'carousel-3', 'carousel-5'],
             productImages: [
-                { image: 'table', discount: '-25', price: '#25,000', name: 'Table'},
-                { image: 'double', discount: '-12', price: '#36,000', name: 'Chair'},
-                { image: 'console', discount: '-15', price: '#30,000', name: 'Console'},
-                { image: 'wardrobe', discount: '-8', price: '#75,000', name: 'Wardrobe'},
-                { image: 'table', discount: '-25', price: '#25,000', name: 'Table'},
-                { image: 'double', discount: '-12', price: '#36,000', name: 'Chair'},
-                { image: 'console', discount: '-15', price: '#30,000', name: 'Console'},
-                { image: 'wardrobe', discount: '-8', price: '#75,000', name: 'Wardrobe'},
-                { image: 'table', discount: '-25', price: '#25,000', name: 'Table'},
-                { image: 'double', discount: '-12', price: '#36,000', name: 'Chair'},
-                { image: 'console', discount: '-15', price: '#30,000', name: 'Console'},
-                { image: 'wardrobe', discount: '-8', price: '#75,000', name: 'Wardrobe'},
+                { image: 'table', discount: '-25', price: '₦25,000', name: 'Table'},
+                { image: 'double', discount: '-12', price: '₦36,000', name: 'Chair'},
+                { image: 'console', discount: '-15', price: '₦30,000', name: 'Console'},
+                { image: 'wardrobe', discount: '-8', price: '₦75,000', name: 'Wardrobe'},
+                { image: 'table', discount: '-25', price: '₦25,000', name: 'Table'},
+                { image: 'double', discount: '-12', price: '₦36,000', name: 'Chair'},
+                { image: 'console', discount: '-15', price: '₦30,000', name: 'Console'},
+                { image: 'wardrobe', discount: '-8', price: '₦75,000', name: 'Wardrobe'},
+                { image: 'table', discount: '-25', price: '₦25,000', name: 'Table'},
+                { image: 'double', discount: '-12', price: '₦36,000', name: 'Chair'},
+                { image: 'console', discount: '-15', price: '₦30,000', name: 'Console'},
+                { image: 'wardrobe', discount: '-8', price: '₦75,000', name: 'Wardrobe'},
             ]
         }
     }
@@ -384,7 +384,7 @@ export default {
 
                     &:hover {
                         img {
-                            transform: scale(1.005, 1.005);
+                            transform: scale(1.01, 1.01);
                         }
                     }
                 }

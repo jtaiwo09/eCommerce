@@ -115,7 +115,7 @@ body {
 
 .row {
   display: flex;
-  align-items: center;
+  // align-items: center;
   flex-wrap: wrap;
   margin-left: auto;
   margin-right: auto;
@@ -139,6 +139,12 @@ body {
     margin-left: 8px;
     margin-right: 8px;
     margin-top:15px;
+  }
+  .col-side {
+    flex-basis: 25%;
+    max-width: 25%;
+    min-width: 25%;
+    width: 25%;
   }
 
 .flyout {

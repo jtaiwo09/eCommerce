@@ -371,6 +371,9 @@ methods: {
                         }
                     }
                 }
+                .link {
+                    color: #282828;
+                }
                 .account-bg {
                     background-color: #ededed;
                 }
