@@ -84,7 +84,9 @@
                   </div>
                   <router-link to="#" class="link">
                       <span class="act">
-                          <i class="fas fa-shopping-cart"></i>
+                        <a-badge :count="count" color="volcano" :offset="[-5, -3]" :number-style="{backgroundColor: 'tomato'}">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a-badge>
                       </span>
                       cart
                   </router-link>
@@ -103,6 +105,7 @@ data(){
         isHelpOpen: false,
         search: '',
         isMenuCategory: false,
+        count: 1
     }
 },
 methods: {
@@ -373,6 +376,12 @@ methods: {
                 }
                 .link {
                     color: #282828;
+                    font-size: 1rem;
+                    font-weight: 500;
+                    i {
+                        font-size: 20px;
+                        padding-right: 8px;
+                    }
                 }
                 .account-bg {
                     background-color: #ededed;

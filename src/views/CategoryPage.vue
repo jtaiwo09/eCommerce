@@ -9,25 +9,21 @@
                   <Carousel :items="items"/>
               </div>
               <Products :productImages="productImages" title="Top Selling items"/>
-              <div class="cols">
+              <!-- <div class="cols">
                   <section class="cards">
                       <h2>Title</h2>
                       <div class="row">
-                          <router-link class="link" to="#">
-                              <div class="image-wrap">
-                                  <img :src="require(`../Images/Carousel/carousel-1.jpg`)" alt="">
-                              </div>
-                              <p class="text">Sofa</p>
-                          </router-link>
-                          <router-link class="link" to="#">
-                              <div class="image-wrap">
-                                  <img :src="require(`../Images/Carousel/carousel-1.jpg`)" alt="">
-                              </div>
-                              <p class="text">Sofa</p>
+                          <router-link class="link" v-for="(item, i) in items" :key="i" to="#">
+                              <template v-if="i < 12">
+                                  <div class="image-wrap">
+                                    <img :src="require(`../Images/Carousel/carousel-1.jpg`)" alt="">
+                                </div>
+                                <p class="text">Sofa</p>
+                              </template>
                           </router-link>
                       </div>
                   </section>
-              </div>
+              </div> -->
           </div>
           <div class="row">
               <div class="col-side">
@@ -46,13 +42,7 @@
                             <div class="btn">Apply</div>
                         </header>
                         <div class="pfs-w">
-                            <a-slider
-                            range
-                            :step="1"
-                            :default-value="[0, 2000000]"
-                            @change="onChange"
-                            @afterChange="onAfterChange"
-                            />
+                            <a-slider range v-model="inputValue1" :min="1" :max="1000000" @change="onChange"/>
                         </div>
                         <div class="pfi-w">
                             <div class="pi-w">
@@ -62,6 +52,16 @@
                             <div class="pi-w">
                                 <input type="number" min="1000000" placeholder="Max" v-model="max" class="pi">
                             </div>
+                        </div>
+                    </section>
+                    <section class="-phm">
+                        <header>
+                            <h2>Size</h2>
+                        </header>
+                        <div class="size">
+                            <input type="number" placeholder="Height">
+                            <input type="number" placeholder="Width">
+                            <input type="number" placeholder="Length">
                         </div>
                     </section>
                   </div>
@@ -109,7 +109,8 @@
                       </header>
                       <div class="row">
                           <article class="prd" v-for="(item,i) in items" :key="i" @mouseenter="currentItem = i" @mouseleave="currentItem = null">
-                              <router-link class="link" to="#">
+                              <router-link class="link" :to="{name:'ProductDetails', params:{slug: `${i}`}}"
+                              >
                                   <div class="image-wrap">
                                       <img :src="require(`../Images/Carousel/${item}.jpg`)" alt="">
                                   </div>
@@ -149,7 +150,7 @@ data(){
         filterBy: 'Newest Arrivals',
         currentItem: null,
         isFilterOpen: false,
-        items: ['carousel-1', 'carousel-3', 'carousel-5'],
+        items: ['carousel-1', 'carousel-3', 'carousel-5', 'carousel-1', 'carousel-3', 'carousel-5', 'carousel-1', 'carousel-3', 'carousel-5', 'carousel-1', 'carousel-3', 'carousel-5', 'carousel-1', 'carousel-3', 'carousel-5'],
         productImages: [
                 { image: 'table', discount: '-25', price: '₦25,000', name: 'Table'},
                 { image: 'double', discount: '-12', price: '₦36,000', name: 'Chair'},
@@ -249,7 +250,7 @@ data(){
             padding-right: 8px;
 
             .card {
-                height: 100%;
+                // height: 100%;
                 box-shadow: 0 2px 5px 0 rgb(0,0,0,0.5);
                 background-color: #fff;
                 border-radius: 4px;
@@ -364,15 +365,27 @@ data(){
                         }
                     }
                 }
+                section {
+                    .size {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        input {
+                            border: none;
+                            border-radius: 4px;
+                            margin-bottom: 4px;
+                            border: 1px solid #949090;
+                            padding: 4px;
+
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+                    }
+                }
             }
         }
         .col-main {
-            padding: 8px;
-            flex-basis: 75%;
-            max-width: 75%;
-            min-width: 75%;
-            width: 75%;
-
             .card{
                 height: 100%;
                 box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);

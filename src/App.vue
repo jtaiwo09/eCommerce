@@ -146,6 +146,13 @@ body {
     min-width: 25%;
     width: 25%;
   }
+  .col-main {
+    padding: 8px;
+    flex-basis: 75%;
+    max-width: 75%;
+    min-width: 75%;
+    width: 75%;
+  }
 
 .flyout {
     z-index: 50;

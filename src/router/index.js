@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 // import Home from '../pages/Home';
 import Home from '../views/Home';
 import CategoryPage from '../views/CategoryPage';
+import ProductDetails from '../views/ProductDetails';
 // import Products from '../pages/Products';
 // import SingleProduct from '../pages/SingleProduct';
 
@@ -26,7 +27,13 @@ const routes = [
     path: '/category/:rooms',
     name: 'Room',
     component: CategoryPage
-  }
+  },
+  {
+    path: '/product/:slug',
+    name: 'ProductDetails',
+    component: ProductDetails,
+    props: true
+  },
 ]
 
 const router = createRouter({
