@@ -104,13 +104,34 @@
               </div>
             </div>
           </div>
+          <Products :productImages="productImages" title="You may also like" />
       </div>
   </main>
 </template>
 
 <script>
+import Products from '../component/Products';
 export default {
-props: ['slug']
+props: ['slug'],
+components: { Products },
+data(){
+  return {
+    productImages: [
+        { image: 'table', discount: '-25', price: '₦25,000', name: 'Table'},
+        { image: 'double', discount: '-12', price: '₦36,000', name: 'Chair'},
+        { image: 'console', discount: '-15', price: '₦30,000', name: 'Console'},
+        { image: 'wardrobe', discount: '-8', price: '₦75,000', name: 'Wardrobe'},
+        { image: 'table', discount: '-25', price: '₦25,000', name: 'Table'},
+        { image: 'double', discount: '-12', price: '₦36,000', name: 'Chair'},
+        { image: 'console', discount: '-15', price: '₦30,000', name: 'Console'},
+        { image: 'wardrobe', discount: '-8', price: '₦75,000', name: 'Wardrobe'},
+        { image: 'table', discount: '-25', price: '₦25,000', name: 'Table'},
+        { image: 'double', discount: '-12', price: '₦36,000', name: 'Chair'},
+        { image: 'console', discount: '-15', price: '₦30,000', name: 'Console'},
+        { image: 'wardrobe', discount: '-8', price: '₦75,000', name: 'Wardrobe'},
+    ]
+  }
+}
 }
 </script>
 
