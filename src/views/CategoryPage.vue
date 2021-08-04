@@ -136,7 +136,6 @@
               class="prd"
               v-for="(item, i) in items"
               :key="i"
-              v-if="this.$store.state.mobile"
               @mouseenter="currentItem = i"
               @mouseleave="currentItem = null"
             >
@@ -165,7 +164,7 @@
                 <div class="btn-wrap">
                   <button
                     class="btn"
-                    :class="currentItem == i ? 'btn-show' : null"
+                    :class="currentItem == i || checkScreen ? 'btn-show' : null"
                   >
                     Add to Cart
                   </button>
@@ -252,6 +251,11 @@ export default {
       ],
     };
   },
+  computed: {
+      checkScreen(){
+          return true;
+      }
+  }
 };
 </script>
 <style lang="scss" scoped>

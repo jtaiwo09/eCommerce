@@ -84,7 +84,7 @@
                   </div>
                   <router-link to="#" class="link">
                       <span class="act">
-                        <a-badge :count="count" color="volcano" :offset="[-5, -3]" :number-style="{backgroundColor: 'tomato'}">
+                        <a-badge :count="count" :offset="[-5, -3]" :number-style="{backgroundColor: 'tomato'}">
                             <i class="fas fa-shopping-cart"></i>
                         </a-badge>
                       </span>

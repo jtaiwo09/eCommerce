@@ -28,7 +28,6 @@ export default {
       search:'',
       cart:'',
       windowWidth: null,
-      mobile: null
     }
   },
   created(){
@@ -37,7 +36,7 @@ export default {
     this.$store.dispatch('GET_PRODUCTS');
   },
   mounted(){
-    console.log(this.windowWidth);
+    // console.log(this.windowWidth);
   },
   methods: {
     open(value){
@@ -69,13 +68,12 @@ export default {
   },
   watch: {
     windowWidth(newVal){
-      if(newVal <= 500){
+      if(newVal <= 1800){
         this.$store.commit('ON_MOBILE')
-        this.windowWidth = newVal;
-      } else {
-        this.$store.commit('OFF_MOBILE')
-
+        console.log(newVal)
+        console.log(this.windowWidth)
       }
+      // this.$store.commit('OFF_MOBILE')
     }
   }
 }
