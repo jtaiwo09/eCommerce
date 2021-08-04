@@ -4,13 +4,9 @@
         <div class="col">
             <div class="flyout-menu">
                 <div class="flyout">
-                    <router-link :to="{name: 'Category', params:{slug: 1}}" class="itm">
+                    <router-link :to="{name: 'Category', params:{slug: getCategory[0].category}}" class="itm">
                         <i class="fas fa-couch"></i>
-                        <span class="text">Couch</span>
-                    </router-link>
-                    <router-link :to="{name: 'Category', params:{slug: 2}}" class="itm">
-                        <i class="fas fa-bed"></i>
-                        <span class="text">Beds</span>
+                        <span class="text">{{getCategory[0].category}}</span>
                     </router-link>
                 </div>
             </div>
@@ -46,22 +42,25 @@ export default {
     components: { TopCategories, Products, Carousel },
     data(){
         return {
+            topSellings: null,
             items: ['carousel-1', 'carousel-3', 'carousel-5'],
-            productImages: [
-                { image: 'table', discount: '-25', price: '₦25,000', name: 'Table'},
-                { image: 'double', discount: '-12', price: '₦36,000', name: 'Chair'},
-                { image: 'console', discount: '-15', price: '₦30,000', name: 'Console'},
-                { image: 'wardrobe', discount: '-8', price: '₦75,000', name: 'Wardrobe'},
-                { image: 'table', discount: '-25', price: '₦25,000', name: 'Table'},
-                { image: 'double', discount: '-12', price: '₦36,000', name: 'Chair'},
-                { image: 'console', discount: '-15', price: '₦30,000', name: 'Console'},
-                { image: 'wardrobe', discount: '-8', price: '₦75,000', name: 'Wardrobe'},
-                { image: 'table', discount: '-25', price: '₦25,000', name: 'Table'},
-                { image: 'double', discount: '-12', price: '₦36,000', name: 'Chair'},
-                { image: 'console', discount: '-15', price: '₦30,000', name: 'Console'},
-                { image: 'wardrobe', discount: '-8', price: '₦75,000', name: 'Wardrobe'},
-            ]
         }
+    },
+    computed: {
+        productImages(){
+            return this.$store.state.products
+        },
+        getCategory(){
+            return this.$store.state.products;
+        }
+    },
+    methods: {
+        getAllProducts(){
+            this.topSellings = this.$store.state.products;
+        },
+    },
+    mounted(){
+        this.getAllProducts();
     }
 }
 </script>

@@ -10,16 +10,16 @@
                 <div class="card-holder">
                     <div class="itm-col" v-for="(item, i) in productImages" :key="i">
                         <article class="prd">
-                            <router-link class="core" to="#">
-                                <img :src="require(`../Images/Categories/${item.image}.jpg`)" alt="">
+                            <router-link class="core" :to="{name:'ProductDetails', params: {slug: item.name}}">
+                                <img :src="item.image" alt="">
                                 <div class="name">
                                     {{item.name}}
                                 </div>
                                 <div class="prc">
-                                    {{item.price}}
+                                    ₦{{item.price}}
                                 </div>
                                 <div class="tag">
-                                    {{item.discount}}%
+                                    -{{item.discount}}%
                                 </div>
                             </router-link>
                         </article>
@@ -39,7 +39,7 @@
 <script>
 export default {
 name: 'products',
-props: ['productImages', 'title']
+props: ['productImages', 'title'],
 }
 </script>
 

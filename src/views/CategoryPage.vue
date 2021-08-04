@@ -8,7 +8,7 @@
       <div class="cols">
         <Carousel :items="items" />
       </div>
-      <Products :productImages="productImages" title="Top Selling items" />
+      <Products :productImages="getProducts" title="Top Selling items" />
       <!-- <div class="cols">
                   <section class="cards">
                       <h2>Title</h2>
@@ -30,11 +30,7 @@
         <div class="card">
           <article>
             <h2>Category</h2>
-            <router-link class="link" to="#">Sofas</router-link>
-            <router-link class="link" to="#">Console Table</router-link>
-            <router-link class="link" to="#">Sectional</router-link>
-            <router-link class="link" to="#">Tv Stand</router-link>
-            <router-link class="link" to="#">Coffee Table</router-link>
+            <router-link v-for="(item, i) in categoryProduct" :key="i" class="link" to="#">{{item.sub}}</router-link>
           </article>
           <section class="-phm">
             <header>
@@ -134,28 +130,28 @@
           <div class="row">
             <article
               class="prd"
-              v-for="(item, i) in items"
+              v-for="(item, i) in getProducts"
               :key="i"
               @mouseover="currentItem = i"
               @mouseout="currentItem = null"
             >
               <router-link
                 class="link"
-                :to="{ name: 'ProductDetails', params: { slug: `${i}` } }"
+                :to="{ name: 'ProductDetails', params: { slug: item.name } }"
               >
                 <div class="image-wrap">
                   <img
-                    :src="require(`../Images/Carousel/${item}.jpg`)"
+                    :src="item.image"
                     alt=""
                   />
                 </div>
                 <div class="info">
-                  <h3 class="name">Name</h3>
-                  <div class="prc">#74,000</div>
+                  <h3 class="name">{{item.name}}</h3>
+                  <div class="prc">{{item.price}}</div>
                   <div class="d-price">
                     <div class="old">#85,000</div>
                     <div class="tag-disc">
-                      -20%
+                      -{{item.discount}}%
                     </div>
                   </div>
                 </div>
@@ -183,6 +179,7 @@ import Carousel from "../component/Carousel";
 import Products from "../component/Products";
 export default {
   components: { Carousel, Products },
+  props: ['slug'],
   data() {
     return {
       filterBy: "Newest Arrivals",
@@ -205,56 +202,21 @@ export default {
         "carousel-3",
         "carousel-5",
       ],
-      productImages: [
-        { image: "table", discount: "-25", price: "₦25,000", name: "Table" },
-        { image: "double", discount: "-12", price: "₦36,000", name: "Chair" },
-        {
-          image: "console",
-          discount: "-15",
-          price: "₦30,000",
-          name: "Console",
-        },
-        {
-          image: "wardrobe",
-          discount: "-8",
-          price: "₦75,000",
-          name: "Wardrobe",
-        },
-        { image: "table", discount: "-25", price: "₦25,000", name: "Table" },
-        { image: "double", discount: "-12", price: "₦36,000", name: "Chair" },
-        {
-          image: "console",
-          discount: "-15",
-          price: "₦30,000",
-          name: "Console",
-        },
-        {
-          image: "wardrobe",
-          discount: "-8",
-          price: "₦75,000",
-          name: "Wardrobe",
-        },
-        { image: "table", discount: "-25", price: "₦25,000", name: "Table" },
-        { image: "double", discount: "-12", price: "₦36,000", name: "Chair" },
-        {
-          image: "console",
-          discount: "-15",
-          price: "₦30,000",
-          name: "Console",
-        },
-        {
-          image: "wardrobe",
-          discount: "-8",
-          price: "₦75,000",
-          name: "Wardrobe",
-        },
-      ],
     };
   },
   computed: {
       checkScreen(){
           return true;
+      },
+      getProducts(){
+        return this.$store.state.products.filter(product=> product.category == this.slug);
+      },
+      categoryProduct(){
+        //
       }
+  },
+  mounted(){
+    console.log(this.$props.slug)
   }
 };
 </script>

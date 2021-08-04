@@ -33,13 +33,13 @@ export default createStore({
     OFF_MOBILE: (state)=> state.mobile = false,
   },
   actions: {
-    GET_PRODUCTS: async ({commit})=> {
-      axios("https://fakestoreapi.com/products")
-      .then(res=> {
-        const payload = res.data;
-        commit('SET_PRODUCTS', payload);
-      })
-    },
+    // GET_PRODUCTS: async ({commit})=> {
+    //   axios("https://fakestoreapi.com/products")
+    //   .then(res=> {
+    //     const payload = res.data;
+    //     commit('SET_PRODUCTS', payload);
+    //   })
+    // },
   },
   modules: {
   }

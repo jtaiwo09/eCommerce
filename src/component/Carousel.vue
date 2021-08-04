@@ -1,11 +1,11 @@
 <template>
-  <div class="slider">
-    <agile class="agile" :options="options">
-        <div v-for="(item, i) in items" :key="i">
-            <img :src="require(`../Images/New/carousel/${item}.jpg`)" alt="">
-        </div>
-    </agile>
-</div>
+    <div class="slider">
+        <agile class="agile" :options="options">
+            <div v-for="(item, i) in items" :key="i">
+                <img :src="require(`../Images/New/carousel/${item}.jpg`)" alt="">
+            </div>
+        </agile>
+    </div>
 </template>
 
 <script>

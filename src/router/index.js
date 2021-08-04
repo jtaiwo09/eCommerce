@@ -26,7 +26,8 @@ const routes = [
   {
     path: '/category/:slug',
     name: 'Category',
-    component: CategoryPage
+    component: CategoryPage,
+    props: true
   },
   {
     path: '/product/:slug',

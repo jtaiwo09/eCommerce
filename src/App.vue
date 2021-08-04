@@ -13,6 +13,7 @@
 
 <script>
 import Navigation from './component/Navigation';
+import { data } from './utils/apis';
 // import Drawer from './components/Drawer';
 // import Bars from './components/Bars';
 // import Search from './components/Search';
@@ -33,7 +34,7 @@ export default {
   created(){
     this.checkScreen();
     window.addEventListener('resize', this.checkScreen);
-    this.$store.dispatch('GET_PRODUCTS');
+    this.$store.commit('SET_PRODUCTS', data);
   },
   mounted(){
     // console.log(this.windowWidth);

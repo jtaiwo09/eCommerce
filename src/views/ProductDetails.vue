@@ -1,9 +1,9 @@
 <template>
   <main>
-      <div class="row">
+      <div class="row" v-for="(item, i) in getProductDetails" :key="i">
         <div class="brcb">
           <router-link class="link" :to="{name:'Home'}">Home > </router-link>
-          <router-link class="link" :to="{name: 'Category', params:{slug: 1}}">Category > </router-link>
+          <router-link class="link" :to="{name: 'Category', params:{slug: item.name}}">Category > </router-link>
           <router-link class="link" to="#">Product Details</router-link>
         </div>
         <section class="col-main">
@@ -12,7 +12,7 @@
                 <div class="col-wrap">
                   <div class="sldr">
                     <router-link class="itm" to="#">
-                      <img :src="require('../Images/Carousel/carousel-2.jpg')" alt="">
+                      <img :src="item.image" alt="">
                     </router-link>
                   </div>
                   <div class="img-scrl">
@@ -34,7 +34,7 @@
               <div class="col-10">
                 <div class="header">
                   <div class="text">
-                    <h1>Product Name</h1>
+                    <h1>{{item.name}}</h1>
                   </div>
                   <div class="wish-list">
                     <i class="far fa-heart" v-if="!addWishList"></i>
@@ -44,10 +44,10 @@
                 <div class="-phs">
                   <div class="price-con">
                     <div class="price-wrap">
-                      <span class="-b">₦56,700</span>
+                      <span class="-b">₦{{item.price}}</span>
                       <div class="-df">
                         <span class="-tal">#82,000</span>
-                        <span class="tag-disc">-52%</span>
+                        <span class="tag-disc">-{{item.discount}}%</span>
                       </div>
                     </div>
                   </div>
@@ -69,7 +69,7 @@
               </h2>
             </header>
             <div class="product-con">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi harum iste architecto quod consequuntur unde saepe quidem at
+              {{item.description}}
             </div>
           </div>
           </section>
@@ -104,7 +104,7 @@
               </div>
             </div>
           </div>
-          <Products :productImages="productImages" title="You may also like" />
+          <Products :productImages="getRelatedProducts" title="You may also like" />
       </div>
   </main>
 </template>
@@ -116,20 +116,14 @@ props: ['slug'],
 components: { Products },
 data(){
   return {
-    productImages: [
-        { image: 'table', discount: '-25', price: '₦25,000', name: 'Table'},
-        { image: 'double', discount: '-12', price: '₦36,000', name: 'Chair'},
-        { image: 'console', discount: '-15', price: '₦30,000', name: 'Console'},
-        { image: 'wardrobe', discount: '-8', price: '₦75,000', name: 'Wardrobe'},
-        { image: 'table', discount: '-25', price: '₦25,000', name: 'Table'},
-        { image: 'double', discount: '-12', price: '₦36,000', name: 'Chair'},
-        { image: 'console', discount: '-15', price: '₦30,000', name: 'Console'},
-        { image: 'wardrobe', discount: '-8', price: '₦75,000', name: 'Wardrobe'},
-        { image: 'table', discount: '-25', price: '₦25,000', name: 'Table'},
-        { image: 'double', discount: '-12', price: '₦36,000', name: 'Chair'},
-        { image: 'console', discount: '-15', price: '₦30,000', name: 'Console'},
-        { image: 'wardrobe', discount: '-8', price: '₦75,000', name: 'Wardrobe'},
-    ]
+  }
+},
+computed: {
+  getProductDetails(){
+    return this.$store.state.products.filter(product => product.name == this.slug);
+  },
+  getRelatedProducts(){
+    return this.$store.state.products;
   }
 }
 }
