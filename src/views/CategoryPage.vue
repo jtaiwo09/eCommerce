@@ -2,7 +2,7 @@
   <main class="main-wrap">
     <div class="row">
       <div class="cols">
-        <router-link class="cbs" to="#">Home</router-link> >
+        <router-link class="cbs" :to="{name: 'Home'}">Home</router-link> >
         <router-link class="cbs" to="#">Living room</router-link>
       </div>
       <div class="cols">
@@ -136,8 +136,8 @@
               class="prd"
               v-for="(item, i) in items"
               :key="i"
-              @mouseenter="currentItem = i"
-              @mouseleave="currentItem = null"
+              @mouseover="currentItem = i"
+              @mouseout="currentItem = null"
             >
               <router-link
                 class="link"
@@ -164,7 +164,7 @@
                 <div class="btn-wrap">
                   <button
                     class="btn"
-                    :class="currentItem == i || checkScreen ? 'btn-show' : null"
+                    :class="currentItem == i ? 'btn-show' : null"
                   >
                     Add to Cart
                   </button>
@@ -652,23 +652,6 @@ export default {
                   text-decoration: line-through;
                   color: #75757a;
                   direction: ltr;
-                }
-                .tag-disc {
-                  font-size: 0.75rem;
-                  text-decoration: none;
-                  padding-right: 2px;
-                  padding-left: 2px;
-                  margin-left: 8px;
-                  height: 18px;
-                  min-width: 32px;
-                  direction: ltr;
-                  color: rgb(135, 206, 235);
-                  background-color: #feefde;
-                  line-height: 1.2;
-                  font-weight: 500;
-                  justify-content: center;
-                  display: inline-flex;
-                  border-radius: 2px;
                 }
               }
             }

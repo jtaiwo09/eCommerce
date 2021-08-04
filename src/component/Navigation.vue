@@ -21,7 +21,7 @@
                           </div>
                       </div> -->
                   </div>
-                  <router-link to="#">
+                  <router-link :to="{name: 'Home'}">
                       <h3>Logo</h3>
                   </router-link>
               </div>

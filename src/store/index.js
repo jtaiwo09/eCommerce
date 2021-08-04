@@ -29,7 +29,8 @@ export default createStore({
       const index = state.cart.findIndex((item, i) => item.id == payload.id);
       state.cart.splice(index, 1);
     },
-    ON_MOBILE: (state)=> state.mobile = !state.mobile,
+    ON_MOBILE: (state)=> state.mobile = true,
+    OFF_MOBILE: (state)=> state.mobile = false,
   },
   actions: {
     GET_PRODUCTS: async ({commit})=> {

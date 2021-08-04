@@ -24,8 +24,8 @@ const routes = [
   //   component: SingleProduct
   // },
   {
-    path: '/category/:rooms',
-    name: 'Room',
+    path: '/category/:slug',
+    name: 'Category',
     component: CategoryPage
   },
   {

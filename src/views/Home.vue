@@ -4,11 +4,11 @@
         <div class="col">
             <div class="flyout-menu">
                 <div class="flyout">
-                    <router-link to="#" class="itm">
+                    <router-link :to="{name: 'Category', params:{slug: 1}}" class="itm">
                         <i class="fas fa-couch"></i>
                         <span class="text">Couch</span>
                     </router-link>
-                    <router-link to="#" class="itm">
+                    <router-link :to="{name: 'Category', params:{slug: 2}}" class="itm">
                         <i class="fas fa-bed"></i>
                         <span class="text">Beds</span>
                     </router-link>

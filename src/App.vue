@@ -53,6 +53,10 @@ export default {
   },
   checkScreen(){
     this.windowWidth = window.innerWidth;
+    if(this.windowWidth <= 958){
+      this.$store.commit('ON_MOBILE');
+    }
+    this.$store.commit('OFF_MOBILE');
   }
   },
   computed: {
@@ -68,12 +72,7 @@ export default {
   },
   watch: {
     windowWidth(newVal){
-      if(newVal <= 1800){
-        this.$store.commit('ON_MOBILE')
-        console.log(newVal)
-        console.log(this.windowWidth)
-      }
-      // this.$store.commit('OFF_MOBILE')
+      console.log(newVal);
     }
   }
 }
@@ -151,6 +150,24 @@ body {
     max-width: 75%;
     min-width: 75%;
     width: 75%;
+  }
+
+  .tag-disc {
+    font-size: 0.75rem;
+    text-decoration: none;
+    padding-right: 2px;
+    padding-left: 2px;
+    margin-left: 8px;
+    height: 18px;
+    min-width: 32px;
+    direction: ltr;
+    color: tomato;
+    background-color: #feefde;
+    line-height: 1.2;
+    font-weight: 500;
+    justify-content: center;
+    display: inline-flex;
+    border-radius: 2px;
   }
 
 .flyout {
