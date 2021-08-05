@@ -212,7 +212,7 @@ export default {
         return this.$store.state.products.filter(product=> product.category == this.slug);
       },
       categoryProduct(){
-        //
+        
       }
   },
   mounted(){
