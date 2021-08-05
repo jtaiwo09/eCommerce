@@ -116,6 +116,7 @@ props: ['slug'],
 components: { Products },
 data(){
   return {
+    
   }
 },
 computed: {

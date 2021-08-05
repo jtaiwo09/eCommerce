@@ -8,7 +8,7 @@
       <div class="cols">
         <Carousel :items="items" />
       </div>
-      <Products :productImages="getProducts" title="Top Selling items" />
+      <Products :productImages="topProducts" title="Top Selling items" />
       <!-- <div class="cols">
                   <section class="cards">
                       <h2>Title</h2>
@@ -30,7 +30,9 @@
         <div class="card">
           <article>
             <h2>Category</h2>
-            <router-link v-for="(item, i) in categoryProduct" :key="i" class="link" to="#">{{item.sub}}</router-link>
+            <div @click="showCategory = item" v-for="(item, i) in categoryProduct" :key="i" class="link">
+              {{item}}
+            </div>
           </article>
           <section class="-phm">
             <header>
@@ -118,7 +120,7 @@
             </div>
             <div class="-phs">
               <p class="-gy5">
-                No of product found
+                Found {{getProducts.length}} Items
               </p>
               <div class="fs0">
                 <router-link class="link" to="#">
@@ -185,6 +187,7 @@ export default {
       filterBy: "Newest Arrivals",
       currentItem: null,
       isFilterOpen: false,
+      showCategory: "Sofa",
       items: [
         "carousel-1",
         "carousel-3",
@@ -209,15 +212,21 @@ export default {
           return true;
       },
       getProducts(){
-        return this.$store.state.products.filter(product=> product.category == this.slug);
+        console.log('Taiwo', this.$store.state.products.filter(product=> product.sub == this.showCategory));
+        return this.$store.state.products.filter(product=> product.sub == this.showCategory);
       },
       categoryProduct(){
-        //
+        const sub = this.$store.state.products;
+        let newArray = []
+        for(let x in sub){
+          newArray.push(sub[x].sub)
+        }
+        return newArray.filter((value, i, a)=> a.indexOf(value) == i);
+      },
+      topProducts(){
+        return this.$store.state.products.filter(product => product.category == this.slug);
       }
   },
-  mounted(){
-    console.log(this.$props.slug)
-  }
 };
 </script>
 <style lang="scss" scoped>
@@ -318,6 +327,7 @@ export default {
             padding: 8px 32px;
             color: #282828;
             display: block;
+            cursor: pointer;
 
             &:hover {
               background-color: #ededed;
