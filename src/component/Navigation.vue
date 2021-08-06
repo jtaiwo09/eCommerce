@@ -84,11 +84,11 @@
                   </div>
                   <router-link to="#" class="link">
                       <span class="act">
-                        <a-badge :count="$store.getters.totalItemInCart" :offset="[-5, -3]" :number-style="{backgroundColor: 'tomato'}">
+                        <a-badge :count="$store.getters.totalItemInCart" :offset="[-10, -3]" :number-style="{backgroundColor: 'tomato'}">
                             <i class="fas fa-shopping-cart"></i>
                         </a-badge>
                       </span>
-                      <a-icon type="shopping-cart" />
+                      Cart
                   </router-link>
               </div>
           </div>
@@ -381,9 +381,11 @@ methods: {
                     color: #282828;
                     font-size: 1rem;
                     font-weight: 500;
+                    display: flex;
+                    padding: 0 10px;
                     i {
                         font-size: 20px;
-                        padding-right: 8px;
+                        padding-right: 12px;
                     }
                 }
                 .account-bg {
