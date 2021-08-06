@@ -10,7 +10,7 @@ export default createStore({
     numItem: 1,
   },
   getters: {
-    totalCartItem: (state)=> state.cart.length
+    totalItemInCart: (state)=> state.cart.length
   },
   mutations: {
     SET_PRODUCTS: (state, payload) => {

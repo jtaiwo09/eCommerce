@@ -1,4 +1,5 @@
 <template>
+<Navigation />
   <div class="app">
     <!-- <Navigation @showDrawer="open"/>
     <Drawer :visible="visible" :drawerWidth='getDrawerWidth' :title='getTitle' @closeDrawer="close">
@@ -6,7 +7,7 @@
       <Search v-else-if="search"/>
       <CartItems v-else-if="cart"/>
     </Drawer > -->
-    <Navigation />
+    
     <router-view/>
   </div>
 </template>
@@ -110,6 +111,14 @@ body {
   display: flex;
   flex-direction: column;
   // justify-content: center;
+}
+
+.main-wrap {
+  flex-grow: 1;
+  padding-bottom: 56px;
+  position: relative;
+  background: #f5f5f5;
+  margin-top: 72px;
 }
 
 .row {

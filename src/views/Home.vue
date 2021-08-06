@@ -67,11 +67,6 @@ export default {
 
 <style lang="scss">
 .main-wrap {
-    flex-grow: 1;
-    padding-bottom: 56px;
-    position: relative;
-    background: #f5f5f5;
-
     .flyout-menu {
         font-size: 0;
         flex-shrink: 0;

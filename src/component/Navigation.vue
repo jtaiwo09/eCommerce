@@ -84,11 +84,11 @@
                   </div>
                   <router-link to="#" class="link">
                       <span class="act">
-                        <a-badge :count="count" :offset="[-5, -3]" :number-style="{backgroundColor: 'tomato'}">
+                        <a-badge :count="$store.getters.totalItemInCart" :offset="[-5, -3]" :number-style="{backgroundColor: 'tomato'}">
                             <i class="fas fa-shopping-cart"></i>
                         </a-badge>
                       </span>
-                      cart
+                      <a-icon type="shopping-cart" />
                   </router-link>
               </div>
           </div>
@@ -105,7 +105,6 @@ data(){
         isHelpOpen: false,
         search: '',
         isMenuCategory: false,
-        count: 1
     }
 },
 methods: {
@@ -119,7 +118,9 @@ methods: {
     },
     openMenuCategory(){
         this.isMenuCategory = !this.isMenuCategory;
-    }
+    },
+}, computed: {
+    
 }
 }
 </script>
@@ -128,6 +129,8 @@ methods: {
 .header {
     z-index: 70;
     height: 72px;
+    width: 100%;
+    position: fixed;
     .wrapper {
         padding-bottom: 16px;
         padding-top: 16px;

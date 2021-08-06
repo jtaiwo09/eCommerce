@@ -8,7 +8,7 @@
       <div class="cols">
         <Carousel :items="items" />
       </div>
-      <Products :productImages="getProducts" title="Top Selling items" />
+      <Products :productImages="topProducts" title="Top Selling items" />
       <!-- <div class="cols">
                   <section class="cards">
                       <h2>Title</h2>
@@ -30,19 +30,22 @@
         <div class="card">
           <article>
             <h2>Category</h2>
-            <router-link v-for="(item, i) in categoryProduct" :key="i" class="link" to="#">{{item.sub}}</router-link>
+            <div @click="showCategory = item" v-for="(item, i) in categoryList" :key="i" class="link">
+              {{item}}
+            </div>
           </article>
           <section class="-phm">
             <header>
               <h2>Price (₦)</h2>
-              <div class="btn">Apply</div>
+              <div @click="clearFilter" class="btn">Clear Filter</div>
             </header>
             <div class="pfs-w">
               <a-slider
                 range
-                v-model="inputValue1"
-                :min="1"
-                :max="1000000"
+                :step="10"
+                :min="minVal"
+                :max="maxVal"
+                :default-value="[minVal, maxVal]"
                 @change="onChange"
               />
             </div>
@@ -50,20 +53,22 @@
               <div class="pi-w">
                 <input
                   type="number"
-                  min="0"
+                  :min="minVal"
                   placeholder="Min"
-                  v-model="min"
+                  v-model="minP"
                   class="pi"
+                  @change="onChange"
                 />
               </div>
               <span class="-phs">-</span>
               <div class="pi-w">
                 <input
                   type="number"
-                  min="1000000"
+                  :max="maxVal"
                   placeholder="Max"
-                  v-model="max"
+                  v-model="maxP"
                   class="pi"
+                  @change='onChange'
                 />
               </div>
             </div>
@@ -73,9 +78,9 @@
               <h2>Size</h2>
             </header>
             <div class="size">
-              <input type="number" placeholder="Height" />
-              <input type="number" placeholder="Width" />
-              <input type="number" placeholder="Length" />
+            <SizeInput min='' max='' placeholder1="Min-Width" placeholder2="Max-Width" />
+            <SizeInput min='' max='' placeholder1="Min-Height" placeholder2="Max-Height" />
+            <SizeInput min='' max='' placeholder1="Min-Breadth" placeholder2="Max-Breadth" />
             </div>
           </section>
         </div>
@@ -84,7 +89,7 @@
         <section class="card">
           <header>
             <div class="-mh-48px">
-              <h1>Sofas</h1>
+              <h1>{{showCategory}}</h1>
               <div class="-mla">
                 <div class="-mla-s" @click="isFilterOpen = !isFilterOpen">
                   <input type="checkbox" class="tgl" />
@@ -118,7 +123,7 @@
             </div>
             <div class="-phs">
               <p class="-gy5">
-                No of product found
+                Found {{hasFiltered.length}} Items
               </p>
               <div class="fs0">
                 <router-link class="link" to="#">
@@ -128,9 +133,10 @@
             </div>
           </header>
           <div class="row">
+            <div class="not-found" v-if="hasFiltered.length < 1">There are no Items between this range</div>
             <article
               class="prd"
-              v-for="(item, i) in getProducts"
+              v-for="(item, i) in hasFiltered ? hasFiltered : showSelected"
               :key="i"
               @mouseover="currentItem = i"
               @mouseout="currentItem = null"
@@ -160,6 +166,7 @@
                 <div class="btn-wrap">
                   <button
                     class="btn"
+                    @click="addToCart(item)"
                     :class="currentItem == i ? 'btn-show' : null"
                   >
                     Add to Cart
@@ -173,51 +180,110 @@
     </div>
   </main>
 </template>
-
 <script>
 import Carousel from "../component/Carousel";
 import Products from "../component/Products";
+import SizeInput from "../component/SizeInput";
 export default {
-  components: { Carousel, Products },
+  components: { Carousel, Products, SizeInput },
   props: ['slug'],
   data() {
     return {
       filterBy: "Newest Arrivals",
       currentItem: null,
       isFilterOpen: false,
+      showCategory: "Sofa",
+      showSelected: [],
+      allProduct: [],
+      productList: [],
+      priceArray: [],
+      minP: this.minVal,
+      maxP: this.maxVal,
       items: [
         "carousel-1",
         "carousel-3",
         "carousel-5",
-        "carousel-1",
-        "carousel-3",
-        "carousel-5",
-        "carousel-1",
-        "carousel-3",
-        "carousel-5",
-        "carousel-1",
-        "carousel-3",
-        "carousel-5",
-        "carousel-1",
-        "carousel-3",
-        "carousel-5",
       ],
+      hasFiltered: [],
     };
   },
-  computed: {
-      checkScreen(){
-          return true;
-      },
-      getProducts(){
-        return this.$store.state.products.filter(product=> product.category == this.slug);
-      },
-      categoryProduct(){
-        
+  created(){
+    this.allProduct = this.$store.state.products.filter(product=> product.category == this.slug);
+    this.getProducts();
+    this.priceList();
+  },
+  methods: {
+    getProducts(){
+      this.showSelected = this.$store.state.products.filter(product=> product.sub == this.showCategory);
+      if(this.filterBy == "Price: Low to High"){
+        this.hasFiltered = this.hasFiltered.sort((a, b)=> a.price - b.price);
       }
+      if(this.filterBy == "Price: High to Low"){
+        this.hasFiltered = this.hasFiltered.sort((a, b)=> b.price - a.price);
+      }
+      if(this.filterBy == "Newest Arrivals"){
+        return this.hasFiltered;
+      }
+    },
+    onChange(value){
+      this.minP = value[0];
+      this.maxP = value[1];
+
+    },
+    filterByPrice(){
+      this.hasFiltered = this.showSelected.filter(product=> product.price >= this.minP && product.price <= this.maxP)
+    },
+    priceList(){
+      for(let x in this.allProduct){
+        this.priceArray.push(this.allProduct[x].price)
+      }
+    },
+    clearFilter(){
+      this.minP = this.minVal
+      this.maxP = this.maxVal
+    },
+    addToCart(value){
+      this.$store.commit('ADD_TO_CART', value);
+    }
+  },
+  watch: {
+    showCategory(){
+      this.getProducts();
+      this.filterByPrice()
+    },
+    filterBy(){
+      this.getProducts();
+    },
+    minP(){
+      this.filterByPrice()
+    },
+    maxP(){
+      this.filterByPrice()
+    },
   },
   mounted(){
-    console.log(this.$props.slug)
-  }
+    this.minP = this.minVal;
+    this.maxP = this.maxVal;
+  },
+  computed: {
+    categoryList(){
+      let data = this.allProduct;
+      let newArray = []
+      for(let x in data){
+        newArray.push(data[x].sub)
+      }
+      return newArray.filter((value, i, a)=> a.indexOf(value) == i);
+    },
+    topProducts(){
+      return this.allProduct.filter(product => product.topSelling);
+    },
+    minVal(){
+      return Math.min(...this.priceArray)
+    },
+    maxVal(){
+      return Math.max(...this.priceArray)
+    }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -318,6 +384,7 @@ export default {
             padding: 8px 32px;
             color: #282828;
             display: block;
+            cursor: pointer;
 
             &:hover {
               background-color: #ededed;
@@ -416,24 +483,7 @@ export default {
             }
           }
         }
-        section {
-          .size {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            input {
-              border: none;
-              border-radius: 4px;
-              margin-bottom: 4px;
-              border: 1px solid #949090;
-              padding: 4px;
-
-              &:focus {
-                outline: none;
-              }
-            }
-          }
-        }
+        
       }
     }
     .col-main {
@@ -555,6 +605,13 @@ export default {
       .row {
         padding: 4px;
 
+        .not-found {
+          color: red;
+          display: inline-block;
+          margin: auto;
+          font-size: 16px;
+        }
+
         .prd {
           order: 0;
           width: calc(100% / 3 - 8px);
@@ -641,7 +698,7 @@ export default {
                 // position: relative;
                 // overflow: hidden;
                 color: #fff;
-                background-color: rgb(70, 68, 192);
+                background-color: rgb(35, 184, 35);
                 cursor: pointer;
                 font-size: 0.875rem;
                 line-height: 1rem;
