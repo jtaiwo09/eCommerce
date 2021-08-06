@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="main-wrap">
       <div class="row" v-for="(item, i) in getProductDetails" :key="i">
         <div class="brcb">
           <router-link class="link" :to="{name:'Home'}">Home > </router-link>
@@ -53,7 +53,7 @@
                   </div>
                 </div>
                 <div class="btn-wrap">
-                  <div class="btn-con">
+                  <div class="btn-con" @click="addToCart(item)">
                     <div class="btn">
                       <i class="fas fa-cart-plus"></i>
                       <span class="text">Add to cart</span>
@@ -119,14 +119,19 @@ data(){
     
   }
 },
-computed: {
-  getProductDetails(){
-    return this.$store.state.products.filter(product => product.name == this.slug);
+  computed: {
+    getProductDetails(){
+      return this.$store.state.products.filter(product => product.name == this.slug);
+    },
+    getRelatedProducts(){
+      return this.$store.state.products;
+    }
   },
-  getRelatedProducts(){
-    return this.$store.state.products;
+  methods: {
+    addToCart(value){
+      this.$store.commit("ADD_TO_CART", value);
+    }
   }
-}
 }
 </script>
 
@@ -332,7 +337,7 @@ main {
             align-items: center;
             overflow: hidden;
             color:#fff;
-            background: rgb(135, 206, 235);
+            background: rgb(35, 184, 35);
             cursor: pointer;
             line-height: 1rem;
             text-align: center;

@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="Nheader">
       <section class="wrapper">
           <div class="row">
               <div class="left">
@@ -126,7 +126,7 @@ methods: {
 </script>
 
 <style lang="scss">
-.header {
+.Nheader {
     z-index: 70;
     height: 72px;
     width: 100%;

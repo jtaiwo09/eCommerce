@@ -288,7 +288,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .main-wrap {
-  margin-top: 15px;
   .row {
     .cols {
       font-size: 0.75rem;
