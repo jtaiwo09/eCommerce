@@ -127,13 +127,11 @@ methods: {
 
 <style lang="scss">
 .Nheader {
-    z-index: 70;
-    height: 72px;
+    z-index: 500;
     width: 100%;
     position: fixed;
     .wrapper {
-        padding-bottom: 16px;
-        padding-top: 16px;
+        padding: 16px 12px;
         box-shadow: 0 4px 4px -4px rgba(0,0,0,0.12);
         background-color: #fff;
         display: block;
@@ -142,10 +140,10 @@ methods: {
             .left {
                 display: flex;
                 align-items: center;
-                flex-basis: 18.75%;
-                max-width: 18.75%;
-                min-width: 18.75%;
-                width: 18.75%;
+                flex-basis: 12.75%;
+                max-width: 12.75%;
+                min-width: 12.75%;
+                width: 12.75%;
                 padding-right: 8px;
 
                 .account {
@@ -207,6 +205,10 @@ methods: {
                 padding-right: 8px;
                 max-width: 100%;
                 flex-grow: 1;
+                @media (max-width: 750px) {
+                    order: 3;
+                    width: 100%;
+                }
 
                 .find{
                     display: flex;
@@ -241,26 +243,17 @@ methods: {
                     }
                 }
                 .btn {
-                    margin-left: 8px;
-                    flex-shrink: 0;
-                    transform: translate3d(0, 0, 0);
                     padding: 12px 16px;
                     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-                    position: relative;
-                    overflow: hidden;
                     color: #fff;
                     background-color: rgb(135, 206, 235);
                     cursor: pointer;
                     font-size: .875rem;
                     line-height: 1rem;
-                    text-align: center;
                     text-transform: uppercase;
                     font-weight: 500;
-                    outline: 0;
                     border: 0;
                     border-radius: 4px;
-                    -webkit-appearance: button;
-                    margin: 0;
                 }
             }
             .right {
@@ -270,7 +263,10 @@ methods: {
                 display: flex;
                 justify-content: space-between;
                 font-weight: 500;
-                flex: 0 1 auto;
+                @media (max-width: 750px) {
+                    flex-grow: 1;
+                    justify-content: flex-end;
+                }
 
                 .account {
                     position: relative;
@@ -302,6 +298,9 @@ methods: {
                             i {
                                 color: #282828;
                                 font-size: 24px;
+                                // @media (max-width: 650px) {
+                                //     font-size: 18px;
+                                // }
                             }
 
                         }
@@ -390,6 +389,67 @@ methods: {
                 }
                 .account-bg {
                     background-color: #ededed;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 650px) {
+    .Nheader {
+        .wrapper {
+            .row {
+                .right {
+                    .link {
+                        padding: 5px;
+                        .act {
+                            i {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                    .account {
+                        .trig {
+                            padding: 2px;
+                            font-size: 0.875rem;
+                            .act {
+                                i {
+                                    font-size: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+                .center {
+                    order: 3;
+                    width: 100%;
+                    height: 35px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 500px) {
+    .Nheader {
+        .wrapper {
+            padding-left: 0;
+            padding-right: 0;
+            .row {
+                .right {
+                    .link {
+                        .act {
+                            i {
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                    .account {
+                        .trig {
+                            .act {
+                                i { font-size: 14px;}
+                            }
+                        }
+                    }
                 }
             }
         }

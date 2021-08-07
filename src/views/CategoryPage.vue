@@ -5,9 +5,6 @@
         <router-link class="cbs" :to="{name: 'Home'}">Home</router-link> >
         <router-link class="cbs" to="#">Living room</router-link>
       </div>
-      <div class="cols">
-        <Carousel :items="items" />
-      </div>
       <Products :productImages="topProducts" title="Top Selling items" />
       <!-- <div class="cols">
                   <section class="cards">
@@ -27,63 +24,7 @@
     </div>
     <div class="row">
       <div class="col-side">
-        <div class="card">
-          <article>
-            <h2>Category</h2>
-            <div @click="showCategory = item" v-for="(item, i) in categoryList" :key="i" class="link">
-              {{item}}
-            </div>
-          </article>
-          <section class="-phm">
-            <header>
-              <h2>Price (₦)</h2>
-              <div @click="clearFilter" class="btn">Clear Filter</div>
-            </header>
-            <div class="pfs-w">
-              <a-slider
-                range
-                :step="10"
-                :min="minVal"
-                :max="maxVal"
-                :default-value="[minVal, maxVal]"
-                @change="onChange"
-              />
-            </div>
-            <div class="pfi-w">
-              <div class="pi-w">
-                <input
-                  type="number"
-                  :min="minVal"
-                  placeholder="Min"
-                  v-model="minP"
-                  class="pi"
-                  @change="onChange"
-                />
-              </div>
-              <span class="-phs">-</span>
-              <div class="pi-w">
-                <input
-                  type="number"
-                  :max="maxVal"
-                  placeholder="Max"
-                  v-model="maxP"
-                  class="pi"
-                  @change='onChange'
-                />
-              </div>
-            </div>
-          </section>
-          <section class="-phm">
-            <header>
-              <h2>Size</h2>
-            </header>
-            <div class="size">
-            <SizeInput min='' max='' placeholder1="Min-Width" placeholder2="Max-Width" />
-            <SizeInput min='' max='' placeholder1="Min-Height" placeholder2="Max-Height" />
-            <SizeInput min='' max='' placeholder1="Min-Breadth" placeholder2="Max-Breadth" />
-            </div>
-          </section>
-        </div>
+        <FilterMenu @on-change="setVal" @show-category="showCategory = $event" :priceArray="priceArray" :showCategory="showCategory" :allProduct="allProduct" :showSelected="showSelected" :hasFiltered="hasFiltered" />
       </div>
       <div class="col-main">
         <section class="card">
@@ -178,14 +119,30 @@
         </section>
       </div>
     </div>
+    <div class="row">
+      <div class="filter-b" @click="openFilter">
+        <div class="filter-con">
+          <h2 class="text">Filter</h2>
+          <i class="fas fa-filter"></i>
+        </div>
+      </div>
+    </div>
+    <transition name="open-filter">
+      <div class="filterSlider-wrap" v-if="isFilterSliderOpen">
+        <div class="filterSlider">
+          <i class="fas fa-times" @click="closeFilter"></i>
+          <FilterMenu @on-change="setVal" @show-category="showCategory = $event" :priceArray="priceArray" :showCategory="showCategory" :allProduct="allProduct" :showSelected="showSelected" :hasFiltered="hasFiltered" />
+        </div>
+      </div>
+    </transition>
   </main>
 </template>
 <script>
-import Carousel from "../component/Carousel";
+// import Carousel from "../component/Carousel";
 import Products from "../component/Products";
-import SizeInput from "../component/SizeInput";
+import FilterMenu from "../component/FilterMenu";
 export default {
-  components: { Carousel, Products, SizeInput },
+  components: { Products, FilterMenu },
   props: ['slug'],
   data() {
     return {
@@ -205,12 +162,19 @@ export default {
         "carousel-5",
       ],
       hasFiltered: [],
+      windowWidth: null
     };
   },
   created(){
     this.allProduct = this.$store.state.products.filter(product=> product.category == this.slug);
+    this.checkScreen();
+    window.addEventListener('resize', this.checkScreen);
+    this.filterByPrice();
     this.getProducts();
     this.priceList();
+    this.minP();
+    this.maxP();
+    
   },
   methods: {
     getProducts(){
@@ -225,25 +189,48 @@ export default {
         return this.hasFiltered;
       }
     },
-    onChange(value){
-      this.minP = value[0];
-      this.maxP = value[1];
-
-    },
-    filterByPrice(){
-      this.hasFiltered = this.showSelected.filter(product=> product.price >= this.minP && product.price <= this.maxP)
-    },
     priceList(){
       for(let x in this.allProduct){
         this.priceArray.push(this.allProduct[x].price)
       }
     },
-    clearFilter(){
-      this.minP = this.minVal
-      this.maxP = this.maxVal
-    },
     addToCart(value){
       this.$store.commit('ADD_TO_CART', value);
+    },
+    filterByPrice(){
+      this.hasFiltered = this.showSelected.filter(product=> product.price >= this.minP && product.price <= this.maxP)
+    },
+    setVal(...args){
+      const [minP, maxP] = args;
+      this.minP = minP;
+      this.maxP = maxP;
+    },
+    minVal(){
+      this.minP = Math.min(...this.priceArray);
+    },
+    maxVal(){
+      this.maxP = Math.max(...this.priceArray);
+    },
+    openFilter(){
+      this.$store.commit('OPEN_FILTER_SLIDER')
+    },
+    closeFilter(){
+      this.$store.commit('CLOSE_FILTER_SLIDER')
+    },
+    checkScreen(){
+    this.windowWidth = window.innerWidth;
+    if(this.windowWidth <= 650){
+      return this.$store.commit('ON_MOBILE');
+    }
+    return this.$store.commit('OFF_MOBILE');
+  }
+  },
+  computed: {
+    topProducts(){
+      return this.allProduct.filter(product => product.topSelling);
+    },
+    isFilterSliderOpen(){
+      return this.$store.state.isFilterSliderOpen;
     }
   },
   watch: {
@@ -260,30 +247,12 @@ export default {
     maxP(){
       this.filterByPrice()
     },
-  },
-  mounted(){
-    this.minP = this.minVal;
-    this.maxP = this.maxVal;
-  },
-  computed: {
-    categoryList(){
-      let data = this.allProduct;
-      let newArray = []
-      for(let x in data){
-        newArray.push(data[x].sub)
+    windowWidth(newVal){
+      if(newVal >= 650){
+        this.closeFilter();
       }
-      return newArray.filter((value, i, a)=> a.indexOf(value) == i);
-    },
-    topProducts(){
-      return this.allProduct.filter(product => product.topSelling);
-    },
-    minVal(){
-      return Math.min(...this.priceArray)
-    },
-    maxVal(){
-      return Math.max(...this.priceArray)
     }
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -364,126 +333,6 @@ export default {
       padding-bottom: 8px;
       padding-left: 8px;
       padding-right: 8px;
-
-      .card {
-        // height: 100%;
-        box-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.5);
-        background-color: #fff;
-        border-radius: 4px;
-
-        article {
-          border-bottom: 1px solid #ededed;
-          h2 {
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            font-weight: 500;
-            padding: 8px 16px;
-          }
-          .link {
-            padding: 8px 32px;
-            color: #282828;
-            display: block;
-            cursor: pointer;
-
-            &:hover {
-              background-color: #ededed;
-            }
-          }
-        }
-        .-phm {
-          padding-left: 16px;
-          padding-right: 16px;
-          padding-bottom: 8px;
-          border-top: 1px solid #ededed;
-
-          header {
-            align-items: center;
-            justify-content: space-between;
-            display: flex;
-
-            h2 {
-              padding-top: 8px;
-              font-size: 0.875rem;
-              text-transform: uppercase;
-            }
-            .btn {
-              flex-shrink: 0;
-              padding: 0;
-              position: relative;
-              cursor: pointer;
-              line-height: 1rem;
-              text-align: center;
-              text-transform: uppercase;
-              font-weight: 500;
-              color: rgb(135, 206, 235);
-              outline: none;
-              border: none;
-              border-radius: 4px;
-              overflow: visible;
-            }
-          }
-          .pfs-w {
-            margin-bottom: 16px;
-            width: 100%;
-            height: 25px;
-          }
-          .pfi-w {
-            width: 100%;
-            align-items: center;
-            display: flex;
-
-            .pi-w {
-              padding: 8px;
-              height: 32px;
-              width: 100%;
-              align-items: center;
-              display: flex;
-              border: 1px solid #ededed;
-              border-radius: 4px;
-
-              .pi {
-                font-size: 0.875rem;
-                min-width: 0;
-                height: 32px;
-                width: 100%;
-                color: #282828;
-                border: none;
-                overflow: visible;
-
-                &:focus {
-                  outline: none;
-                }
-              }
-            }
-            .-phs {
-              font-size: 1rem;
-              padding-left: 8px;
-              padding-right: 8px;
-            }
-            .pi-w {
-              padding: 8px;
-              height: 32px;
-              width: 100%;
-              align-items: center;
-              display: flex;
-              border: 1px solid #ededed;
-              border-radius: 4px;
-
-              .pi {
-                font-size: 0.875rem;
-                min-width: 0;
-                height: 32px;
-                width: 100%;
-                box-shadow: none;
-                color: #282828;
-                outline: none;
-                overflow: visible;
-              }
-            }
-          }
-        }
-        
-      }
     }
     .col-main {
       .card {
@@ -509,7 +358,7 @@ export default {
               font-weight: 500;
               padding-left: 8px;
               padding-right: 6px;
-              overflow: hidden;
+              margin-bottom: 0;
             }
             .-mla {
               margin-left: auto;
@@ -589,7 +438,7 @@ export default {
           }
           .-gy5 {
             padding-left: 8px;
-            padding-right: 8px;
+            margin: 0;
             color: #75757a;
           }
           .fs0 {
@@ -612,22 +461,15 @@ export default {
         }
 
         .prd {
-          order: 0;
           width: calc(100% / 3 - 8px);
           font-size: 0.75rem;
           margin: 4px;
-          padding-left: 0;
-          padding-right: 0;
-          padding-bottom: 0;
           flex-direction: column;
           display: flex;
-          overflow: hidden;
           border-radius: 4px;
-          position: relative;
           background-color: #fff;
 
           .link {
-            min-height: 1px;
             flex-grow: 1;
             background-color: rgba(0, 0, 0, 0);
 
@@ -638,7 +480,8 @@ export default {
               img {
                 height: auto;
                 width: 100%;
-                display: block;
+                height: 180px;
+                object-fit: cover;
               }
             }
             .info {
@@ -694,8 +537,6 @@ export default {
                 padding-left: 16px;
                 padding-right: 16px;
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-                // position: relative;
-                // overflow: hidden;
                 color: #fff;
                 background-color: rgb(35, 184, 35);
                 cursor: pointer;
@@ -723,5 +564,288 @@ export default {
       }
     }
   }
+    .row {
+      .filter-b {
+          background: #282828;
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          height: 50px;
+          display: none;
+          z-index: 500;
+          cursor: pointer;
+
+        .filter-con {
+            display: flex !important;
+            align-items: center;
+            margin: 0 18px;
+            height: 100%;
+
+            h2 {
+              font-size: 16px;
+              font-weight: 500;
+              color: #fff;
+              margin-right: 8px;
+            }
+            i {
+              font-size: 14px;
+              color: #fff;
+            }
+        }
+        @media (max-width: 650px) {
+          display: initial;
+        }
+      }
+  }
+  .filterSlider-wrap {
+    position: relative;
+    .filterSlider {
+      height: 100%;
+      width: 220px;
+      position: fixed;
+      top: 102px;
+      left: 0;
+      z-index: 400;
+      overflow: scroll;
+      scroll-behavior: smooth;
+      background: #fff;
+
+      .card {
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    i {
+      color: #282828;
+      position: absolute;
+      right: 10px;
+      z-index: 800;
+      font-size: 18px;
+      top: 10px;
+    }
+  }
+}
+
+.open-filter-enter-active,
+.open-filter-leave-active {
+  transition: all 2s ease;
+}
+
+.open-filter-enter-from {
+  transform: translateX(-200px);
+}
+
+.open-filter-enter-to {
+  transform: translateX(0);
+}
+.open-filter-leave-to {
+  transform: translateX(-200px);
+}
+
+
+
+
+
+
+
+
+@media (max-width: 800px) {
+.main-wrap {
+  .row {
+    .col-side {
+      padding-right: 0;
+      padding-left: 4px;
+      width: 30%;
+      min-width: 30%;
+      max-width: 30%;
+      flex-basis: 30%;
+    }
+  }
+  .col-main {
+    width: 70%;
+    min-width: 70%;
+      max-width: 70%;
+      flex-basis: 70%;
+  }
+}
+}
+
+@media (max-width: 750px) {
+.main-wrap {
+  .row {
+    .col-side {
+      padding-right: 0;
+      padding-left: 4px;
+      width: 30%;
+      min-width: 30%;
+      max-width: 30%;
+      flex-basis: 30%;
+
+      .card {
+        .-phm {
+          header {
+            font-size: .75rem;
+            h2 {font-size: .75rem;}
+          }
+        }
+      }
+    }
+  }
+  .col-main {
+    width: 70%;
+    min-width: 70%;
+      max-width: 70%;
+      flex-basis: 70%;
+
+      .card {
+        header {
+          .-mh-48px {
+            h1 { font-size: 16px !important;}
+          }
+        }
+        .row {
+          .prd {
+            width: calc(100%/ 2 - 8px)
+          }
+        }
+      }
+  }
+}
+}
+
+@media (max-width: 650px) {
+.main-wrap {
+  .row {
+    .col-side {
+      display: none;
+    }
+    .col-main {
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+      flex-basis: 100%;
+
+      .card {
+        .row {
+          .prd {
+            width: calc(100% / 3 - 8px)
+          }
+        }
+      }
+    }
+  }
+}
+}
+
+@media (max-width: 570px) {
+.main-wrap {
+  .row {
+    .col-main {
+      .card {
+        .row {
+          .prd {
+            width: calc(100% / 2 - 8px)
+          }
+        }
+      }
+  }
+  }
+}
+}
+@media (max-width: 750px) {
+.main-wrap {
+  .row {
+    .col-side {
+      padding-right: 0;
+      padding-left: 4px;
+      width: 30%;
+      min-width: 30%;
+      max-width: 30%;
+      flex-basis: 30%;
+
+      .card {
+        article {
+          padding-bottom: 8px;
+          .link {
+            padding: 4px 8px;
+            font-size: .75rem;
+          }
+        }
+        .-phm {
+          header {
+            font-size: .75rem;
+            h2 {font-size: .75rem;}
+          }
+        }
+      }
+    }
+  }
+  .col-main {
+    width: 70%;
+    min-width: 70%;
+      max-width: 70%;
+      flex-basis: 70%;
+
+      .card {
+        header {
+          .-mh-48px {
+            h1 { font-size: 16px !important;}
+          }
+        }
+        .row {
+          .prd {
+            width: calc(100%/ 2 - 8px)
+          }
+        }
+      }
+  }
+}
+}
+@media (max-width: 500px) {
+.main-wrap {
+  .row {
+    .col-side {
+      .card {
+        .-phm {
+          padding-right: 8px;
+          padding-left: 8px;
+        }
+      }
+    }
+  }
+  .col-main {
+      .card {
+        header {
+          .-mh-48px {
+            h1 {display: none;}
+            .-mla {
+              .-mla-s {
+                .trig {
+                  font-size: 0.8rem;
+
+                  .pfx {
+                    font-size: .8rem;
+                  }
+                }
+                .box {
+                  min-width: 180px;
+                }
+              }
+            }
+          }
+
+        }
+        .row {
+          .prd {
+            width: calc(100% - 8px)
+          }
+        }
+      }
+  }
+}
 }
 </style>

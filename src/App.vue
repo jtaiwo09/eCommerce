@@ -1,13 +1,6 @@
 <template>
-<Navigation />
+  <Navigation />
   <div class="app">
-    <!-- <Navigation @showDrawer="open"/>
-    <Drawer :visible="visible" :drawerWidth='getDrawerWidth' :title='getTitle' @closeDrawer="close">
-      <Bars v-if="menu"/>
-      <Search v-else-if="search"/>
-      <CartItems v-else-if="cart"/>
-    </Drawer > -->
-    
     <router-view/>
   </div>
 </template>
@@ -15,10 +8,6 @@
 <script>
 import Navigation from './component/Navigation';
 import { data } from './utils/apis';
-// import Drawer from './components/Drawer';
-// import Bars from './components/Bars';
-// import Search from './components/Search';
-// import CartItems from './components/CartItems';
 
 export default {
   name: 'app',
@@ -33,50 +22,8 @@ export default {
     }
   },
   created(){
-    this.checkScreen();
-    window.addEventListener('resize', this.checkScreen);
     this.$store.commit('SET_PRODUCTS', data);
   },
-  mounted(){
-    // console.log(this.windowWidth);
-  },
-  methods: {
-    open(value){
-      this.visible=true
-      if(value == 'menu') this.menu = true;
-      else if(value == 'cart') this.cart = true;
-      else this.search = true;
-    },
-    close(){
-    this.visible = false;
-    this.menu = false;
-    this.search = false;
-    this.cart = false;
-  },
-  checkScreen(){
-    this.windowWidth = window.innerWidth;
-    if(this.windowWidth <= 958){
-      this.$store.commit('ON_MOBILE');
-    }
-    this.$store.commit('OFF_MOBILE');
-  }
-  },
-  computed: {
-    getTitle(){
-      if(this.menu) return 'MENU';
-      else if(this.search) return 'SEARCH'
-      else return 'CART';
-    },
-    getDrawerWidth(){
-      if(this.mobile) return this.windowWidth;
-      else return '580';
-    }
-  },
-  watch: {
-    windowWidth(newVal){
-      console.log(newVal);
-    }
-  }
 }
 </script>
 <style lang="scss">
@@ -86,11 +33,8 @@ export default {
   box-sizing: border-box;
 }
 
-.app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
+#app {
+  position: relative;
 }
 
 header, section, nav {
@@ -107,17 +51,14 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  min-width: 950px;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
 }
 
 .main-wrap {
   flex-grow: 1;
   padding-bottom: 56px;
   background: #f5f5f5;
-  margin-top: 72px;
 }
 
 .row {
@@ -130,11 +71,11 @@ body {
   width: 100%;
   flex: 0 1 auto;
   @media (max-width: 1200px) {
-      max-width: 950px;
+      max-width: 1000px;
   }
-  // @media (max-width: 500px) {
-  //     max-width: 350px;
-  // }
+  @media (max-width: 1000px) {
+      max-width: 850px;
+  }
 }
 .col {
     padding-bottom: 8px;
@@ -214,12 +155,12 @@ body {
         }
     }
 }
-
-// .app {
-//   display: flex;
-//   flex-direction: column;
-//   min-height: 100vh;
-// }
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-top: 75px;
+}
 // .container-wrapper {
 //   margin-top: 70px;
 // }

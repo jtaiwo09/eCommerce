@@ -1,7 +1,7 @@
 <template>
 <main class="main-wrap">
     <div class="row">
-        <div class="col">
+        <!-- <div class="col">
             <div class="flyout-menu">
                 <div class="flyout">
                     <router-link :to="{name: 'Category', params:{slug: getCategory[0].category}}" class="itm">
@@ -14,7 +14,7 @@
             <div class="ads">
                 <img :src="require('../Images/New/ads/ads-1.jpg')" alt="">
             </div>
-        </div>
+        </div> -->
         <TopCategories :cards="{img1:'ads-1.jpg', img2: 'ads-2.jpg'}"/>
         <TopCategories :cards="{img1:'ads-3.jpg', img2: 'ads-4.jpeg'}"/>
         <Products :productImages="productImages" title="New Arrivals"/>
@@ -37,9 +37,9 @@
 <script>
 import TopCategories from '../component/TopCategories.vue';
 import Products from '../component/Products.vue';
-import Carousel from '../component/Carousel.vue';
+// import Carousel from '../component/Carousel.vue';
 export default {
-    components: { TopCategories, Products, Carousel },
+    components: { TopCategories, Products },
     data(){
         return {
             topSellings: null,
@@ -141,32 +141,16 @@ export default {
     width: 100%;
     padding-left: 8px;
     padding-right: 8px;
+    @media (max-width: 650px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
 
     .cards {
         overflow: hidden;
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.05);
         background: #fff;
         border-radius: 4px;
-
-        .header-wrap {
-            align-items: center;
-            display: flex;
-            overflow: hidden;
-            padding-left: 0;
-            padding-right: 0;
-            max-width: 100%;
-            flex-grow: 1;
-
-            h2 {
-                font-size: 1.25rem;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                overflow: hidden;
-                font-weight: 500;
-                margin-left: 10px;
-                padding: 0;
-            }
-        }
 
         .card-wrapper {
             padding: 8px 4px;
@@ -184,6 +168,12 @@ export default {
                     width: 100%;
                     position: relative;
                     overflow: hidden;
+                    @media (max-width: 650px) {
+                        height: 150px;
+                    }
+                    @media (max-width: 500px) {
+                        height: 120px;
+                    }
 
                     img {
                         border-radius: 4px;
