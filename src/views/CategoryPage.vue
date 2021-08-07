@@ -128,12 +128,10 @@
       </div>
     </div>
     <transition name="open-filter">
-      <div class="filterSlider-wrap" v-if="isFilterSliderOpen">
-        <div class="filterSlider">
+        <div class="filterSlider" v-if="isFilterSliderOpen">
           <i class="fas fa-times" @click="closeFilter"></i>
           <FilterMenu @on-change="setVal" @show-category="showCategory = $event" :priceArray="priceArray" :showCategory="showCategory" :allProduct="allProduct" :showSelected="showSelected" :hasFiltered="hasFiltered" />
         </div>
-      </div>
     </transition>
   </main>
 </template>
@@ -597,8 +595,6 @@ export default {
         }
       }
   }
-  .filterSlider-wrap {
-    position: relative;
     .filterSlider {
       height: 100%;
       width: 220px;
@@ -627,12 +623,11 @@ export default {
       font-size: 18px;
       top: 10px;
     }
-  }
 }
 
 .open-filter-enter-active,
 .open-filter-leave-active {
-  transition: all 2s ease;
+  transition: .5s ease;
 }
 
 .open-filter-enter-from {
