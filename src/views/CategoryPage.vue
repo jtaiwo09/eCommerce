@@ -379,6 +379,7 @@ export default {
                   user-select: none;
                   padding: 8px;
                   border-radius: 4px;
+                  margin-right: 20px;
 
                   .pfx {
                     font-weight: 500;
@@ -596,19 +597,21 @@ export default {
       }
   }
     .filterSlider {
-      height: 100%;
+      height: calc(100% - 50px);
       width: 220px;
       position: fixed;
-      top: 102px;
+      top: 0;
       left: 0;
-      z-index: 400;
+      z-index: 1200;
       overflow: scroll;
       scroll-behavior: smooth;
       background: #fff;
+      box-shadow: 2px 4px 3px rgba(0, 0, 0, 0.2);
 
       .card {
         border-radius: 0;
         box-shadow: none;
+        margin-top: 20px;
       }
 
       &::-webkit-scrollbar {
@@ -621,7 +624,7 @@ export default {
       right: 10px;
       z-index: 800;
       font-size: 18px;
-      top: 10px;
+      top: 15px;
     }
 }
 
@@ -723,6 +726,7 @@ export default {
       min-width: 100%;
       max-width: 100%;
       flex-basis: 100%;
+      height: 400px;
 
       .card {
         .row {

@@ -74,8 +74,6 @@ props: ['productImages', 'title'],
                 align-items: center;
                 display: flex;
                 overflow: hidden;
-                padding-left: 0;
-                padding-right: 0;
                 max-width: 100%;
                 flex-grow: 1;
 

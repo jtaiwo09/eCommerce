@@ -141,10 +141,6 @@ export default {
     width: 100%;
     padding-left: 8px;
     padding-right: 8px;
-    @media (max-width: 650px) {
-        padding-left: 0;
-        padding-right: 0;
-    }
 
     .cards {
         overflow: hidden;

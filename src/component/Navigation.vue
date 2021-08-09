@@ -208,6 +208,9 @@ methods: {
                 @media (max-width: 750px) {
                     order: 3;
                     width: 100%;
+                    padding-left: 0;
+                    padding-right: 0;
+                    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
                 }
 
                 .find{
@@ -402,19 +405,20 @@ methods: {
                 .right {
                     .link {
                         padding: 5px;
+                        font-size: .75rem;
                         .act {
                             i {
-                                font-size: 20px;
+                                font-size: 16px;
                             }
                         }
                     }
                     .account {
                         .trig {
                             padding: 2px;
-                            font-size: 0.875rem;
+                            font-size: 0.75rem;
                             .act {
                                 i {
-                                    font-size: 20px;
+                                    font-size: 16px;
                                 }
                             }
                         }
@@ -432,21 +436,19 @@ methods: {
 @media (max-width: 500px) {
     .Nheader {
         .wrapper {
-            padding-left: 0;
-            padding-right: 0;
             .row {
                 .right {
                     .link {
                         .act {
                             i {
-                                font-size: 14px;
+                                font-size: 13px;
                             }
                         }
                     }
                     .account {
                         .trig {
                             .act {
-                                i { font-size: 14px;}
+                                i { font-size: 13px;}
                             }
                         }
                     }
