@@ -210,6 +210,7 @@ methods: {
                     width: 100%;
                     padding-left: 0;
                     padding-right: 0;
+                    border-radius: 4px;
                     box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
                 }
 

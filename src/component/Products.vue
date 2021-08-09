@@ -45,8 +45,8 @@ props: ['productImages', 'title'],
 
 <style lang="scss" scoped>
 .cols {
-    margin-bottom: 16px;
-    margin-top: 16px;
+    // margin-bottom: 16px;
+    // margin-top: 16px;
     flex-basis: 100%;
     max-width: 100%;
     min-width: 100%;

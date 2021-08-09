@@ -323,8 +323,7 @@ export default {
     }
   }
   .row {
-    padding-bottom: 16px;
-    position: relative;
+    // position: relative;
 
     .col-side {
       padding-top: 8px;
@@ -726,7 +725,8 @@ export default {
       min-width: 100%;
       max-width: 100%;
       flex-basis: 100%;
-      height: 400px;
+      min-height: 100vh;
+      max-height: 100%;
 
       .card {
         .row {
