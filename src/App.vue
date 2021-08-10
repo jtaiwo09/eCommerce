@@ -160,8 +160,5 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin-top: 75px;
-  @media (max-width: 750px) {
-    margin-top: 155px;
-  }
 }
 </style>
