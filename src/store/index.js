@@ -1,9 +1,9 @@
 import { createStore } from 'vuex';
-import axios from 'axios';
 
 export default createStore({
   state: {
     mobile: false,
+    isFilterSliderOpen: null,
     products: null,
     dataFetched: false,
     cart: [],
@@ -31,6 +31,8 @@ export default createStore({
     },
     ON_MOBILE: (state)=> state.mobile = true,
     OFF_MOBILE: (state)=> state.mobile = false,
+    OPEN_FILTER_SLIDER: (state) => state.isFilterSliderOpen = !state.isFilterSliderOpen,
+    CLOSE_FILTER_SLIDER: (state) => state.isFilterSliderOpen = false,
   },
   actions: {
     // GET_PRODUCTS: async ({commit})=> {

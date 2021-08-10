@@ -1,20 +1,15 @@
 <template>
   <div class="cols">
             <section class="cards">
-                <header class="rows">
-                        <div class="header-wrap">
-                            <h2>{{cards.title}}</h2>
-                        </div>
-                    </header>
                 <div class="card-wrapper">
                     <router-link class="card-link" to="#">
                         <div class="image-wrap">
-                            <img :src="require(`../Images/New/carousel/${this.cards.img1}`)" alt="">
+                            <img :src="require(`../Images/New/carousel/${cards.img1}`)" alt="">
                         </div>
                     </router-link>
                     <router-link class="card-link" to="#">
                         <div class="image-wrap">
-                            <img :src="require(`../Images/New/carousel/${this.cards.img2}`)" alt="">
+                            <img :src="require(`../Images/New/carousel/${cards.img2}`)" alt="">
                         </div>
                     </router-link>
                 </div>
@@ -29,6 +24,6 @@ props: ['cards']
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>
